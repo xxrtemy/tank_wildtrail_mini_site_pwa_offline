@@ -1,0 +1,3056 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#000000" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="WILD TRAIL" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icon-192.png" />
+    <title>TANK | WILD TRAIL — офлайн-форма</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #000;
+        color: #fff;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+          sans-serif;
+        -webkit-text-size-adjust: 100%;
+        -webkit-font-smoothing: antialiased;
+      }
+      .page {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 34px 44px 52px;
+      }
+      .hero {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+      .brand {
+        margin: 0 0 26px;
+      }
+      .brand-logo {
+        display: block;
+        width: 100%;
+        max-width: 620px;
+        height: auto;
+        margin: 0 auto;
+        border: 0;
+      }
+      .lead {
+        margin: 26px auto 0;
+        max-width: 620px;
+        font-size: 26px;
+        line-height: 1.25;
+        font-weight: 400;
+        text-align: center;
+      }
+      .form-block {
+        margin-top: 34px;
+      }
+      .field {
+        margin-bottom: 22px;
+      }
+      .label {
+        display: block;
+        margin: 0 0 8px;
+        color: #8f8f94;
+        font-size: 17px;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+      .required-star {
+        color: #ff5f57;
+        font-weight: 800;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"] {
+        display: block;
+        width: 100%;
+        height: 50px;
+        border: 1px solid #d9d9d9;
+        border-radius: 3px;
+        background: #f4f4f4;
+        color: #111;
+        font-size: 18px;
+        line-height: 50px;
+        padding: 0 14px;
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      input:focus {
+        border-color: #fff;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.18);
+      }
+      .phone-wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+        border: 1px solid #d9d9d9;
+        border-radius: 3px;
+        background: #f4f4f4;
+        overflow: hidden;
+      }
+      .phone-prefix {
+        flex: 0 0 auto;
+        padding-left: 14px;
+        padding-right: 8px;
+        font-size: 18px;
+        line-height: 1;
+        color: #111;
+        user-select: none;
+        pointer-events: none;
+      }
+      .phone-wrapper input[type="tel"] {
+        flex: 1 1 auto;
+        height: 48px;
+        min-width: 0;
+        border: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        padding-left: 0 !important;
+      }
+      .phone-wrapper:focus-within {
+        border-color: #fff;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.18);
+      }
+      .consents {
+        margin-top: 34px;
+      }
+      .consent-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        margin: 0 0 24px;
+      }
+      .consent-row input[type="checkbox"] {
+        width: 24px;
+        min-width: 24px;
+        height: 24px;
+        margin: 1px 0 0;
+        border: 1.5px solid #d8d8d8;
+        border-radius: 2px;
+        background: #fff;
+        -webkit-appearance: none;
+        appearance: none;
+        position: relative;
+      }
+      .consent-row input[type="checkbox"]:checked:after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 3px;
+        width: 7px;
+        height: 13px;
+        border: solid #111;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+      .consent-row label {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.18;
+        font-weight: 700;
+        color: #fff;
+      }
+      .consent-row a {
+        color: #2f7ee8;
+        text-decoration: none;
+      }
+      .submit-wrap {
+        margin-top: 30px;
+        margin-bottom: 44px;
+      }
+      .submit-btn {
+        display: block;
+        width: 100%;
+        height: 40px;
+        border: 0;
+        border-radius: 8px;
+        background: #ee9a57;
+        color: #000;
+        font-size: 14px;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      .status {
+        min-height: 22px;
+        margin-top: 12px;
+        font-size: 16px;
+        line-height: 1.35;
+        color: #9fe59f;
+        text-align: center;
+      }
+      .divider-line {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.24);
+        margin: 42px 0 28px;
+      }
+      details.admin {
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        padding: 14px 16px 16px;
+        color: #fff;
+      }
+      details.admin summary {
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 16px;
+        outline: none;
+      }
+      .counter {
+        margin: 14px 0 12px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 15px;
+      }
+      .admin-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 12px;
+      }
+      .ghost-btn,
+      .danger-btn {
+        border: 0;
+        min-height: 44px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 800;
+        cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      .ghost-btn {
+        background: #2c2c2c;
+        color: #fff;
+      }
+      .danger-btn {
+        background: #6f1d1b;
+        color: #fff;
+      }
+
+      .modal-backdrop {
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 9999;
+        padding: 16px;
+        background: rgba(0, 0, 0, 0.76);
+      }
+      .modal-backdrop.active {
+        display: block;
+      }
+      .modal {
+        width: 100%;
+        max-width: 940px;
+        max-height: 92vh;
+        margin: 2vh auto 0;
+        background: #fff;
+        color: #111;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 32px rgba(0, 0, 0, 0.38);
+      }
+      .modal-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px 10px;
+        border-bottom: 1px solid #ededed;
+      }
+      .modal-title {
+        margin: 0;
+        font-size: 19px;
+        line-height: 1.2;
+        font-weight: 800;
+      }
+      .icon-close {
+        border: 0;
+        background: #f1f1f1;
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        font-size: 24px;
+        line-height: 1;
+        cursor: pointer;
+      }
+      .doc-content {
+        height: 72vh;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        background: #fff;
+        color: #111;
+        padding: 18px;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+      .legal-doc h2 {
+        margin: 0 0 14px;
+        font-size: 20px;
+        line-height: 1.25;
+        text-align: center;
+      }
+      .doc-heading {
+        margin: 16px 0 8px;
+        font-size: 16px;
+        line-height: 1.3;
+        font-weight: 800;
+        text-align: left;
+      }
+      .doc-p {
+        margin: 0 0 9px;
+      }
+      .doc-table-wrap {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 12px 0;
+      }
+      .legal-table {
+        width: 100%;
+        min-width: 620px;
+        border-collapse: collapse;
+        table-layout: auto;
+        font-size: 12px;
+        line-height: 1.3;
+      }
+      .legal-table td {
+        border: 1px solid #222;
+        padding: 6px;
+        vertical-align: top;
+        white-space: pre-wrap;
+      }
+      .modal-foot {
+        padding: 10px 16px 14px;
+        border-top: 1px solid #ededed;
+        color: #555;
+        font-size: 14px;
+      }
+      .export-modal-body {
+        padding: 14px 16px 16px;
+        background: #fff;
+        color: #111;
+      }
+      .export-help {
+        margin: 0 0 12px;
+        color: #333;
+        font-size: 15px;
+        line-height: 1.45;
+      }
+      .export-textarea {
+        width: 100%;
+        height: 46vh;
+        min-height: 260px;
+        border: 1px solid #d8d8d8;
+        border-radius: 12px;
+        padding: 12px;
+        font-family: Menlo, Monaco, Consolas, monospace;
+        font-size: 13px;
+        line-height: 1.35;
+        color: #111;
+        background: #fafafa;
+        resize: vertical;
+        white-space: pre;
+      }
+      .export-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .modal-btn {
+        border: 0;
+        border-radius: 10px;
+        min-height: 44px;
+        padding: 10px 14px;
+        font-size: 15px;
+        font-weight: 800;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #111;
+        color: #fff;
+      }
+      .modal-btn.secondary {
+        background: #ededed;
+        color: #111;
+      }
+
+      @media (max-width: 780px) {
+        .page {
+          padding: 30px 42px 40px;
+        }
+        .brand-logo {
+          max-width: 520px;
+        }
+        .lead {
+          font-size: 24px;
+        }
+        .doc-content {
+          height: 76vh;
+          padding: 14px;
+          font-size: 13px;
+        }
+      }
+      @media (max-width: 430px) {
+        .page {
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+        .lead {
+          font-size: 21px;
+        }
+        .label {
+          font-size: 15px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        .phone-prefix {
+          font-size: 16px;
+        }
+        .consent-row label {
+          font-size: 16px;
+        }
+      }
+
+      /* v21: phone-safe документы без iframe, PDF и модальных окон */
+      .legal-docs-section {
+        max-width: 760px;
+        margin: 28px auto 0;
+        padding: 0 44px 44px;
+        color: #fff;
+      }
+
+      .legal-section-title {
+        margin: 0 0 8px;
+        font-size: 18px;
+        line-height: 1.25;
+        font-weight: 800;
+      }
+
+      .legal-section-note {
+        margin: 0 0 14px;
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 14px;
+        line-height: 1.35;
+      }
+
+      .legal-details {
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: #111;
+        border-radius: 12px;
+        margin: 0 0 12px;
+        overflow: hidden;
+      }
+
+      .legal-details > summary {
+        padding: 14px 16px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 800;
+        line-height: 1.25;
+        color: #fff;
+        outline: none;
+      }
+
+      .legal-details-body {
+        max-height: 70vh;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 16px;
+        background: #fff;
+        color: #111;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .legal-details-body .legal-doc h2 {
+        color: #111;
+      }
+
+      .legal-details-body .legal-table {
+        color: #111;
+      }
+
+      @media (max-width: 780px) {
+        .legal-docs-section {
+          padding-left: 42px;
+          padding-right: 42px;
+        }
+      }
+
+      @media (max-width: 430px) {
+        .legal-docs-section {
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+
+        .legal-details-body {
+          font-size: 13px;
+        }
+      }
+
+      /* v22: выгрузка Excel сразу после отправки */
+      @media (max-width: 430px) {
+        .export-actions .modal-btn,
+        .export-actions button.modal-btn,
+        .export-actions a.modal-btn {
+          width: 100%;
+        }
+      }
+
+      /* v23: постоянная видимая таблица данных для телефона и iPad */
+      .visible-data-panel {
+        max-width: 760px;
+        margin: 28px auto 0;
+        padding: 0 44px 28px;
+        color: #fff;
+      }
+
+      .visible-data-title {
+        margin: 0 0 8px;
+        font-size: 20px;
+        line-height: 1.25;
+        font-weight: 900;
+      }
+
+      .visible-data-note {
+        margin: 0 0 14px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 15px;
+        line-height: 1.35;
+      }
+
+      .visible-data-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 12px 0 16px;
+      }
+
+      .visible-data-actions .ghost-btn,
+      .visible-data-actions .link-btn {
+        min-height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        line-height: 1.1;
+      }
+
+      .visible-records-table-wrap {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 12px;
+        background: #0f0f0f;
+        margin-bottom: 14px;
+      }
+
+      .visible-records-table {
+        width: 100%;
+        min-width: 920px;
+        border-collapse: collapse;
+        color: #fff;
+        font-size: 13px;
+        line-height: 1.25;
+      }
+
+      .visible-records-table th,
+      .visible-records-table td {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 8px 9px;
+        vertical-align: top;
+        text-align: left;
+        white-space: nowrap;
+      }
+
+      .visible-records-table th {
+        background: #1c1c1c;
+        color: #fff;
+        font-weight: 900;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
+      .visible-records-empty {
+        padding: 16px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 15px;
+      }
+
+      .visible-data-label {
+        display: block;
+        margin: 8px 0 8px;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .visible-csv-textarea {
+        width: 100%;
+        min-height: 190px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 12px;
+        background: #111;
+        color: #fff;
+        padding: 12px;
+        font-family: Menlo, Monaco, Consolas, monospace;
+        font-size: 12px;
+        line-height: 1.35;
+        resize: vertical;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      @media (max-width: 780px) {
+        .visible-data-panel {
+          padding-left: 42px;
+          padding-right: 42px;
+        }
+      }
+
+      @media (max-width: 430px) {
+        .visible-data-panel {
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+
+        .visible-data-actions .ghost-btn,
+        .visible-data-actions .link-btn {
+          width: 100%;
+        }
+
+        .visible-csv-textarea {
+          min-height: 230px;
+          font-size: 11px;
+        }
+      }
+
+      /* v24: данные показываются сразу под формой без модальных окон */
+      .save-debug-status {
+        background: rgba(159, 229, 159, 0.12);
+        border: 1px solid rgba(159, 229, 159, 0.36);
+        color: #c9ffc9;
+        border-radius: 12px;
+        padding: 12px 14px;
+        margin: 12px 0 12px;
+        font-size: 15px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+
+      .last-record-card {
+        background: #151515;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: #fff;
+        border-radius: 12px;
+        padding: 13px 14px;
+        margin: 0 0 14px;
+        font-size: 15px;
+        line-height: 1.45;
+      }
+
+      .last-record-card strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 16px;
+      }
+
+      #visibleDataPanel {
+        scroll-margin-top: 18px;
+      }
+
+      /* v25: диагностика и native mailto-fallback, если JS в просмотре файла заблокирован */
+      .js-fallback-notice {
+        margin-top: 14px;
+        padding: 13px 14px;
+        border: 1px solid rgba(255, 198, 89, 0.45);
+        border-radius: 12px;
+        background: rgba(255, 198, 89, 0.12);
+        color: #ffe0a1;
+        font-size: 14px;
+        line-height: 1.35;
+        text-align: left;
+        font-weight: 700;
+      }
+
+      /* v26: mini-site / PWA offline status */
+      .offline-status {
+        max-width: 620px;
+        margin: 0 auto 22px;
+        padding: 12px 14px;
+        border: 1px solid rgba(159, 229, 159, 0.36);
+        border-radius: 12px;
+        background: rgba(159, 229, 159, 0.1);
+        color: #c9ffc9;
+        font-size: 14px;
+        line-height: 1.35;
+        text-align: center;
+        font-weight: 700;
+      }
+
+      .offline-status.warn {
+        border-color: rgba(255, 198, 89, 0.45);
+        background: rgba(255, 198, 89, 0.12);
+        color: #ffe0a1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <section class="hero">
+        <div class="brand">
+          <img
+            src="data:image/png;base64,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"
+            alt="TANK | WILD TRAIL"
+            class="brand-logo"
+          />
+        </div>
+        <div class="lead">
+          TANK — это не просто<br />
+          современные автомобили.<br />
+          Это сообщество людей, которых<br />
+          объединяют общие стремления,<br />
+          цели и сила&nbsp;духа.
+        </div>
+      </section>
+
+      <div id="offlineStatus" class="offline-status">
+        Офлайн-режим: откройте сайт один раз с интернетом, затем он сможет
+        работать без интернета на этом устройстве.
+      </div>
+
+      <section class="form-block">
+        <form
+          id="registrationForm"
+          action=""
+          novalidate
+        >
+          <input type="hidden" name="Мероприятие" value="WILD TRAIL" />
+          <input type="hidden" name="Код телефона" value="+7" />
+          <div class="field">
+            <label class="label" for="firstName"
+              >Имя <span class="required-star">*</span></label
+            >
+            <input id="firstName" name="Имя" type="text" />
+          </div>
+
+          <div class="field">
+            <label class="label" for="lastName">Фамилия</label>
+            <input id="lastName" name="Фамилия" type="text" />
+          </div>
+
+          <div class="field">
+            <label class="label" for="phone"
+              >Телефон <span class="required-star">*</span></label
+            >
+            <div class="phone-wrapper">
+              <span class="phone-prefix">+7</span>
+              <input
+                id="phone"
+                name="Телефон без кода страны"
+                type="tel"
+                inputmode="numeric"
+                autocomplete="tel"
+                placeholder="(___) ___-__-__"
+                maxlength="15"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="email"
+              >E-mail <span class="required-star">*</span></label
+            >
+            <input id="email" name="E-mail" type="email" />
+          </div>
+
+          <div class="consents">
+            <div class="consent-row">
+              <input
+                id="policyConsent"
+                name="Ознакомлен с политикой ПД"
+                value="Да"
+                type="checkbox"
+              />
+              <label for="policyConsent"
+                >Я ознакомлен с
+                <a href="#doc-policy"
+                  >Политикой обработки персональных данных</a
+                >
+                и принимаю условия <span class="required-star">*</span></label
+              >
+            </div>
+
+            <div class="consent-row">
+              <input
+                id="personalDataConsent"
+                name="Согласие на обработку ПД"
+                value="Да"
+                type="checkbox"
+              />
+              <label for="personalDataConsent"
+                >Я даю
+                <a href="#doc-personal"
+                  >согласие на обработку персональных данных</a
+                >
+                <span class="required-star">*</span></label
+              >
+            </div>
+
+            <div class="consent-row">
+              <input
+                id="communicationConsent"
+                name="Согласие на коммуникацию"
+                value="Да"
+                type="checkbox"
+              />
+              <label for="communicationConsent"
+                >Я даю <a href="#doc-communication">согласие на коммуникацию</a>
+                <span class="required-star">*</span></label
+              >
+            </div>
+
+            <div class="consent-row">
+              <input
+                id="thirdPartyConsent"
+                name="Согласие на передачу ПД третьим лицам"
+                value="Да"
+                type="checkbox"
+              />
+              <label for="thirdPartyConsent"
+                >Я даю
+                <a href="#doc-third-party"
+                  >согласие на предоставление персональных данных</a
+                >
+                третьим лицам <span class="required-star">*</span></label
+              >
+            </div>
+          </div>
+
+          <div class="submit-wrap">
+            <button
+              type="button"
+              id="sendButton"
+              class="submit-btn"
+            >
+              Отправить
+            </button>
+            <div class="status" id="status"></div>
+
+            <div id="jsFallbackNotice" class="js-fallback-notice">
+              Если после нажатия «Отправить» данные не появляются ниже, значит
+              этот просмотр файла заблокировал JavaScript. В таком режиме кнопка
+              откроет черновик письма с введёнными данными — его можно сохранить
+              или отправить себе.
+            </div>
+            <noscript>
+              <div class="js-fallback-notice">
+                JavaScript отключён. Автоматическое сохранение в таблицу
+                недоступно, но кнопка «Отправить» откроет письмо с введёнными
+                данными.
+              </div>
+            </noscript>
+          </div>
+        </form>
+      </section>
+
+      <section class="visible-data-panel" id="visibleDataPanel">
+        <h2 class="visible-data-title">Отправленные данные</h2>
+        <p class="visible-data-note">
+          Все сохранённые заявки отображаются здесь сразу после отправки. На
+          телефоне/планшете можно посмотреть таблицу, скопировать данные или
+          скачать файл.
+        </p>
+        <div id="saveDebugStatus" class="save-debug-status">
+          Пока нет отправленных данных.
+        </div>
+        <div
+          id="lastRecordCard"
+          class="last-record-card"
+          style="display: none"
+        ></div>
+
+        <div class="visible-data-actions">
+          <button
+            type="button"
+            class="ghost-btn"
+            data-action="refresh-visible-data"
+          >
+            Обновить таблицу
+          </button>
+          <button type="button" class="ghost-btn" data-action="copy-visible-csv">
+            Скопировать данные
+          </button>
+          <button type="button" class="ghost-btn" data-action="select-visible-csv">
+            Выделить всё
+          </button>
+          <a
+            id="visibleDownloadXlsLink"
+            class="ghost-btn link-btn"
+            href="#"
+            download="tank_wildtrail_registrations.xls"
+            >Скачать Excel</a
+          >
+          <a
+            id="visibleDownloadCsvLink"
+            class="ghost-btn link-btn"
+            href="#"
+            download="tank_wildtrail_registrations.csv"
+            >Скачать CSV</a
+          >
+        </div>
+
+        <div id="visibleRecordsTable" class="visible-records-table-wrap"></div>
+
+        <label class="visible-data-label" for="visibleCsvTextarea"
+          >Данные для копирования в Excel / Numbers</label
+        >
+        <textarea
+          id="visibleCsvTextarea"
+          class="visible-csv-textarea"
+          readonly
+          placeholder="После отправки заявки данные появятся здесь"
+        ></textarea>
+      </section>
+
+      <div class="divider-line"></div>
+
+      <details class="admin">
+        <summary>Служебные действия офлайн-формы</summary>
+        <div class="counter" id="counter"></div>
+        <div class="admin-actions">
+          <button type="button" class="ghost-btn" data-action="export-to-csv">
+            Экспорт данных в Excel
+          </button>
+          <button type="button" class="danger-btn" data-action="clear-all-data">
+            Очистить все данные
+          </button>
+        </div>
+      </details>
+    </div>
+    <div class="modal-backdrop" id="exportModalBackdrop">
+      <div class="modal" role="dialog" aria-modal="true">
+        <div class="modal-head">
+          <h2 class="modal-title">Экспорт данных</h2>
+          <button
+            type="button"
+            class="icon-close"
+            data-action="close-export-modal"
+            aria-label="Закрыть"
+          >
+            ×
+          </button>
+        </div>
+        <div class="export-modal-body">
+          <p class="export-help">
+            После отправки форма автоматически готовит файл для Excel. Если
+            телефон не скачал файл сам, нажмите «Скачать Excel» или скопируйте
+            данные и вставьте их в Excel / Numbers / Google Sheets.
+          </p>
+          <textarea
+            id="exportTextarea"
+            class="export-textarea"
+            readonly
+          ></textarea>
+          <div class="export-actions">
+            <a
+              id="downloadXlsLink"
+              class="modal-btn"
+              href="#"
+              download="tank_wildtrail_registrations.xls"
+              >Скачать Excel</a
+            >
+            <a
+              id="downloadCsvLink"
+              class="modal-btn secondary"
+              href="#"
+              download="tank_wildtrail_registrations.csv"
+              >Скачать CSV</a
+            >
+            <button
+              type="button"
+              class="modal-btn secondary"
+              data-action="copy-export-csv"
+            >
+              Скопировать данные
+            </button>
+            <button
+              type="button"
+              class="modal-btn secondary"
+              data-action="select-export-csv"
+            >
+              Выделить всё
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="legal-docs-section" aria-label="Документы согласий">
+      <h2 class="legal-section-title">Документы согласий</h2>
+      <p class="legal-section-note">
+        На телефоне документы открываются прямо на странице: нажмите на название
+        документа, чтобы раскрыть текст.
+      </p>
+
+      <details id="doc-policy" class="legal-details">
+        <summary>Политика обработки персональных данных</summary>
+        <div class="legal-details-body">
+          <article class="legal-doc">
+            <h2>Политика обработки персональных данных</h2>
+            <h3 class="doc-heading">
+              ПОЛИТИКА ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ УЧАСТНИКОВ МЕРОПРИЯТИЯ WILD
+              TRAIL
+            </h3>
+            <h3 class="doc-heading"><strong>I. ОБЩИЕ ПОЛОЖЕНИЯ</strong></h3>
+            <p class="doc-p">
+              <strong>1.1.</strong> Настоящая Политика обработки персональных
+              данных участников мероприятия «WILD TRAIL» (далее – Мероприятие) и
+              (далее – Субъекты персональных данных/Участники) разработана
+              Обществом с ограниченной ответственностью «Грейт Волл Мотор Рус»
+              ИНН 7729763331 ОГРН 1147746089314, адрес юр. лица: 129226, г.
+              Москва, вн. тер. г. муниципальный округ Останкинский, ул.
+              Вильгельма Пика, д.16 (далее – Компания/Оператор персональных
+              данных) в соответствии с Конституцией Российской Федерации,
+              Федеральным законом “Об информации, информационных технологиях и о
+              защите информации” от 27.07.2006 N 149 - ФЗ, Федеральным законом
+              “О персональных данных” от 27.07.2006 N 152 - ФЗ, иными нормативно
+              - правовыми актами Российской Федерации в области обработки
+              персональных данных, в целях определения порядка сбора, записи,
+              систематизации, накопления, хранения, уточнения (обновления,
+              изменения), извлечения, использования, передачи (распространение,
+              предоставление, доступ), обезличивания, блокирования, удаления,
+              уничтожения персональных данных Участников, обеспечения защиты их
+              прав и свобод при обработке персональных данных, в том числе
+              защиты прав на неприкосновенность частной жизни, личную и семейную
+              тайну, а также определения целей обработки, категорий и перечня
+              персональных данных, необходимых для регистрации на Мероприятие, а
+              также в иных целях, указанных в настоящей Политике.
+            </p>
+            <p class="doc-p">
+              <strong>1.2.</strong> Обработка персональных данных осуществляется
+              на законной и справедливой основе и ограничивается достижением
+              конкретных, заранее определенных целей, регламентированных Главой
+              III настоящей Политики.
+            </p>
+            <p class="doc-p">
+              <strong>1.3.</strong> Компанией не допускается обработка
+              персональных данных, не совместимая с целями сбора. Обработке
+              подлежат только те персональные данные, которые отвечают целям их
+              обработки.
+            </p>
+            <p class="doc-p">
+              <strong>1.4.</strong> Содержание и объем обрабатываемых Компанией
+              персональных данных соответствуют заявленным целям обработки.
+              Обрабатываемые персональные данные не являются избыточными по
+              отношению к указанным целям их обработки.
+            </p>
+            <p class="doc-p">
+              <strong>1.5.</strong> При обработке персональных данных не
+              допускается объединение баз данных, содержащих персональные
+              данные, обработка которых осуществляется в целях, несовместимых
+              между собой.
+            </p>
+            <p class="doc-p">
+              <strong>1.6.</strong> При обработке персональных данных
+              обеспечиваются их точность и достаточность, а в необходимых
+              случаях и актуальность по отношению к целям обработки персональных
+              данных. Оператор принимает необходимые меры по удалению и
+              уточнению неполных или неточных данных.
+            </p>
+            <p class="doc-p">
+              <strong>1.7.</strong> При обработке персональных данных Компанией
+              используются следующие способы обработки: любые действия
+              (операции) или совокупность действий (операций), совершаемых с
+              использованием средств автоматизации или без использования таких
+              средств с персональными данными, включая сбор, запись,
+              систематизацию, накопление, хранение, уточнение (обновление,
+              изменение), извлечение, использование, доступ, передачу
+              (распространение, предоставление, доступ), обезличивание,
+              блокирование, удаление, уничтожение персональных данных.
+            </p>
+            <p class="doc-p">
+              <strong>1.8.</strong> Хранение персональных данных осуществляется
+              в форме, позволяющей определить субъекта персональных данных не
+              дольше, чем этого требуют цели обработки персональных данных, если
+              срок хранения персональных данных не установлен Федеральным
+              законом «О персональных данных» от 27.07.2006 N 152 - ФЗ,
+              договором, стороной которого, выгодоприобретателем или поручителем
+              по которому является субъект персональных данных. Обрабатываемые
+              персональные данные подлежат уничтожению либо обезличиванию по
+              достижении целей обработки или в случае утраты необходимости в
+              достижении этих целей, если иное не предусмотрено
+              законодательством Российской Федерации.
+            </p>
+            <p class="doc-p">
+              <strong>1.9.</strong> Пользователь соглашается с условиями
+              настоящей Политики одним из следующих способов:
+            </p>
+            <p class="doc-p">
+              посредством проставления «галочки» в соответствующем чек – боксе в
+              форме регистрации на Мероприятие.
+            </p>
+            <p class="doc-p">
+              <strong>1.10.</strong> Обработка персональных данных Участника
+              возможна исключительно после выражения им безусловного согласия с
+              условиями настоящей Политики в порядке, указанном в п. 1.9
+              настоящей Политики, а также получения от Участника согласия на
+              обработку персональных данных, согласия на предоставление
+              персональных данных третьим лицам, подписываемых в порядке,
+              указанном в п. 4.1.2., в отсутствие иных оснований, указанных в
+              Федеральном законе от 27.07.2006 N 152-ФЗ “О персональных данных”.
+            </p>
+            <h3 class="doc-heading">
+              <strong
+                >II. ОСНОВНЫЕ ПОНЯТИЯ, ИСПОЛЬЗУЕМЫЕ В НАСТОЯЩЕЙ ПОЛИТИКЕ</strong
+              >
+            </h3>
+            <p class="doc-p">
+              Субъект персональных данных - физическое лицо, которое прямо или
+              косвенно определено или определяемо с помощью персональных данных
+              в том числе Участник мероприятия;
+            </p>
+            <p class="doc-p">
+              Участник - лицо, прошедшее процедуру регистрации на Мероприятие и
+              безоговорочно принявшее условия настоящей Политики, а также
+              связанных с ней положений и соглашений;
+            </p>
+            <p class="doc-p">
+              Оператор персональных данных (также «Оператор» или «Компания») –
+              ООО «ООО «Грейт Волл Мотор Рус»» ИНН 7729763331 ОГРН
+              1147746089314, адрес юр. лица: 129226, г. Москва, вн. тер. г.
+              муниципальный округ Останкинский, ул. Вильгельма Пика, д.16,
+              самостоятельно или совместно с другими лицами организующее и/или
+              осуществляющее обработку персональных данных, а также определяющее
+              цели обработки персональных данных, состав персональных данных,
+              подлежащих обработке, действий (операций), совершаемых с
+              персональными данными субъектов персональных данных;
+            </p>
+            <p class="doc-p">
+              Персональные данные – любая информация, относящаяся к прямо или
+              косвенно определенному или определяемому физическому лицу;
+            </p>
+            <p class="doc-p">
+              Персональные данные, разрешенные Субъектом персональных данных для
+              распространения – персональные данные, доступ неограниченного
+              круга лиц к которым предоставлен субъектом персональных данных
+              путем дачи согласия на обработку персональных данных, разрешенных
+              субъектом персональных данных для распространения в порядке,
+              предусмотренном Федеральным законом «О персональных данных» от
+              27.07.2006 N 152 - ФЗ;
+            </p>
+            <p class="doc-p">
+              Обработка персональных данных – любое действие (операция) или
+              совокупность действий (операций), совершаемых с использованием
+              средств автоматизации или без использования таких средств с
+              персональными данными, включая сбор, запись, систематизацию,
+              накопление, хранение, уточнение (обновление, изменение),
+              извлечение, использование, передачу (распространение,
+              предоставление, доступ), обезличивание, блокирование, удаление,
+              уничтожение персональных данных;
+            </p>
+            <p class="doc-p">
+              Передача персональных данных – предоставление персональных данных
+              третьим лицам, предоставление доступа к персональным данным
+              (внутреннего и/или персональных данных;
+            </p>
+            <p class="doc-p">
+              Распространение персональных данных – действия, направленные на
+              раскрытие персональных данных неопределенному кругу лиц;
+            </p>
+            <p class="doc-p">
+              Внутренний доступ к персональным данным – действия, направленные
+              на раскрытие персональных данных работникам Компании, в целях
+              выполнениями ими отдельных функций и/или должностных обязанностей,
+              посредством предоставления доступа к специальным ресурсам
+              Компании, содержащим персональные данные субъектов персональных
+              данных;
+            </p>
+            <p class="doc-p">
+              Предоставление персональных данных третьим лицам и внешний доступ
+              к персональным данным – действия, направленные на раскрытие
+              персональных данных определенному лицу или определенному кругу лиц
+              - контрагентам, привлеченным к обработке на основании поручений на
+              обработку персональных данных и/или договоров, регулирующих
+              обработку персональных данных, посредством предоставления доступа
+              к бумажным документам и/или файловому серверу, и/или специальным
+              системам, содержащим персональные данные субъектов и/или
+              непосредственная передача персональных данных и/или носителей,
+              содержащих персональные данные субъектов;
+            </p>
+            <p class="doc-p">
+              Третье лицо – юридическое лицо, и/или индивидуальный
+              предприниматель, и/или физическое лицо, которому на основании
+              поручения на обработку персональных данных, оператор предоставил
+              право обрабатывать персональные данные субъектов персональных
+              данных в целях и на условиях, указанных в поручении на обработку
+              персональных данных и/или лицо, которое осуществляет совместную с
+              оператором обработку персональных данных на условиях,
+              установленных соответствующим договором;
+            </p>
+            <p class="doc-p">
+              Поручение на обработку персональных данных – отдельное соглашение
+              и/или специальные нормы договоров и/или соглашений, заключаемых
+              между оператором персональных данных и лицом, действующим по
+              поручению оператора и/или третьим лицом, и/или обработчиком,
+              регулирующие порядок предоставления права обработки персональных
+              данных субъектов персональных данных в целях и на условиях,
+              указанных в поручении;
+            </p>
+            <p class="doc-p">
+              Блокирование персональных данных – временное прекращение обработки
+              персональных данных (за исключением случаев, если обработка
+              необходима для уточнения персональных данных);
+            </p>
+            <p class="doc-p">
+              Уничтожение персональных данных – действия, в результате которых
+              становится невозможным восстановить содержание персональных данных
+              в информационной системе персональных данных и (или) в результате
+              которых уничтожаются материальные носители персональных данных;
+            </p>
+            <p class="doc-p">
+              Обезличивание персональных данных – действия, в результате которых
+              становится невозможным без дополнительной определить
+              принадлежность информации персональных данных конкретному субъекту
+              персональных данных;
+            </p>
+            <p class="doc-p">
+              Информационная система персональных данных – совокупность
+              содержащихся в базах данных персональных данных и обеспечивающих
+              их обработку информационных технологий и технических средств;
+            </p>
+            <p class="doc-p">
+              Федеральная служба по надзору в сфере связи, информационных
+              технологий и массовых коммуникаций Роскомнадзор и/или и/или
+              Уполномоченный орган по защите Субъектов персональных данных –
+              федеральный орган исполнительной власти, осуществляющий функции по
+              контролю и надзору в сфере средств массовой информации, в том
+              числе электронных и массовых коммуникаций, информационных
+              технологий и связи, функции по контролю и надзору за соответствием
+              обработки персональных данных требованиям законодательства
+              Российской Федерации в области персональных данных, а также
+              функции по организации деятельности радиочастотной службы, а также
+              защите прав субъектов персональных данных;
+            </p>
+            <h3 class="doc-heading">
+              <strong
+                >III. ЦЕЛИ, КАТЕГОРИИ И ПЕРЕЧЕНЬ ПЕРСОНАЛЬНЫХ ДАННЫХ, ПОДЛЕЖАЩИХ
+                ОБРАБОТКЕ</strong
+              >
+            </h3>
+            <div class="doc-table-wrap">
+              <table class="legal-table">
+                <tr>
+                  <td>N</td>
+                  <td>Цели обработки персональных данных</td>
+                  <td>Категории персональных данных, подлежащих обработке</td>
+                  <td>Перечень персональных данных, подлежащих обработке</td>
+                </tr>
+                <tr>
+                  <td>1.</td>
+                  <td>
+                    Регистрация и обеспечение участия в Мероприятии,
+                    организуемом Компанией:
+                  </td>
+                  <td>общие</td>
+                  <td>
+                    − фамилия, имя, отчество; − № телефона; − адрес электронной
+                    почты.
+                  </td>
+                </tr>
+                <tr>
+                  <td>2.</td>
+                  <td>
+                    Разработка и формирование необходимых документов в том
+                    числе, но не ограничиваясь: соглашений о безопасности, тест
+                    - драйве, иных соглашений и договоров:
+                  </td>
+                  <td>общие</td>
+                  <td>
+                    − фамилия, имя, отчество; − паспортные данные: серия, №,
+                    дата и место выдачи, адрес регистрации, места рождения, дата
+                    рождения; − № телефона; − адрес электронной почты.
+                  </td>
+                </tr>
+                <tr>
+                  <td>3.</td>
+                  <td>
+                    Направление своевременных ответов на запросы и обращения,
+                    связанные с товарами и услугами, предоставляемыми Компанией
+                    и ее партнерами, оптимизация процессов взаимодействия с
+                    Участниками, оказание консультационных услуг, связанных с
+                    предоставлением товаров и услуг Компанией, осуществление
+                    мониторинга, контроля обслуживания:
+                  </td>
+                  <td>общие</td>
+                  <td>
+                    − фамилия, имя, отчество; − № телефона; − адрес электронной
+                    почты.
+                  </td>
+                </tr>
+                <tr>
+                  <td>4.</td>
+                  <td>
+                    Формирование и ведение Компанией единой клиентской базы:
+                  </td>
+                  <td>общие</td>
+                  <td>
+                    − фамилия, имя, отчество; − № телефона; − адрес электронной
+                    почты.
+                  </td>
+                </tr>
+                <tr>
+                  <td>5.</td>
+                  <td>
+                    Контроль качества предоставляемых товаров и/или услуг;
+                    ведение статистической и аналитической отчетности;
+                    мониторинг и аудит:
+                  </td>
+                  <td>общие</td>
+                  <td>
+                    − фамилия, имя, отчество; − № телефона; − адрес электронной
+                    почты.
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <h3 class="doc-heading">
+              <strong>IV. ПОРЯДОК ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ</strong>
+            </h3>
+            <h3 class="doc-heading">
+              <strong>4.1. СБОР ПЕРСОНАЛЬНЫХ ДАННЫХ:</strong>
+            </h3>
+            <p class="doc-p">
+              4.1.1. Основанием обработки персональных данных пользователей в
+              целях, указанных в Главе III настоящей Политики, является
+              настоящая Политика, а также Согласие на обработку персональных
+              данных участников мероприятия WILD TRAIL.
+            </p>
+            <p class="doc-p">
+              4.1.2. Оформление Согласия на обработку персональных данных
+              участника мероприятия, указанного в п. 4.1.1. настоящей Политики,
+              а также Согласия, указанного в пункте 4.3.1. настоящей Политики,
+              возможно одним из следующих способов:
+            </p>
+            <p class="doc-p">
+              посредством заполнения и подписания бумажной формы;
+            </p>
+            <p class="doc-p">
+              посредством заполнения специальных онлайн - форм, размещенных на
+              официальных сайтах, программных платформах Компании и проставления
+              соответствующих галочек в чек – боксах.
+            </p>
+            <p class="doc-p">
+              4.1.3. Получение персональных данных Пользователя у третьего лица
+              возможно исключительно с письменного согласия самого Пользователя,
+              после уведомления его о целях, перечне персональных данных,
+              предполагаемых источниках и способах их получения. Настоящее
+              требование не распространяется на случаи предоставления Компании
+              персональных данных Пользователей в случае предварительного
+              оформления соответствующих согласий, в рамках которых, Компания
+              выступает в качестве Третьего лица.
+            </p>
+            <h3 class="doc-heading">
+              <strong>4.2. ХРАНЕНИЕ ПЕРСОНАЛЬНЫХ ДАННЫХ:</strong>
+            </h3>
+            <p class="doc-p">
+              4.2.1. Персональные данные, полученные от Пользователей, хранятся
+              на специальных электронных ресурсах Компании.
+            </p>
+            <p class="doc-p">
+              4.2.2. Срок обработки персональных данных Пользователей –
+              достижение целей обработки персональных данных, указанных в Главе
+              III настоящей Политики, и/или сроков обработки персональных
+              данных, указанных в соответствующих Согласиях.
+            </p>
+            <p class="doc-p">
+              4.2.3. Срок архивного хранения персональных данных Пользователей –
+              в течение срока, установленного законодательством Российской
+              Федерации в сфере архивного дела.
+            </p>
+            <h3 class="doc-heading">
+              <strong
+                >4.3. ПРЕДОСТАВЛЕНИЕ ВНУТРЕННЕГО ДОСТУПА К ПЕРСОНАЛЬНЫМ
+                ДАННЫМ:</strong
+              >
+            </h3>
+            <p class="doc-p">
+              4.3.1. Основанием предоставления внутреннего доступа к
+              персональным данным Пользователей является Согласие, указанное в
+              пункте 4.1.1. настоящей Политики.
+            </p>
+            <p class="doc-p">
+              4.3.2. Правом внутреннего доступа к персональным данным
+              Пользователей в целях, указанных в Главе III настоящей Политики,
+              обладают уполномоченные лица Компании, указанные во внутреннем
+              Перечне лиц, ответственных за обработку персональных данных в
+              отдельных структурных подразделениях, а также лиц, имеющих право
+              доступа к персональным данным субъектов персональных данных,
+              обрабатываемым в Обществе с ограниченной ответственностью «Грейт
+              Волл Мотор Рус».
+            </p>
+            <p class="doc-p">
+              4.3.3. Внутренний доступ к персональным данным Пользователей может
+              быть предоставлен иным уполномоченным лицам Компании на основании
+              письменного разрешения руководителя соответствующего структурного
+              подразделения Компании.
+            </p>
+            <p class="doc-p">
+              4.3.4. Лица, указанные в п. 4.3.2 – 4.3.3 настоящей Политики,
+              имеют право внутреннего доступа только к тем персональным данным,
+              которые необходимы для выполнения ими конкретных функций и
+              должностных обязанностей, связанных с обеспечением предоставления
+              отдельных товаров и услуг Пользователю. Обработка персональных
+              данных указанными лицами осуществляется в соответствии с
+              требованиями, регламентированными в п. 1.2. - 1.7. настоящей
+              Политики.
+            </p>
+            <p class="doc-p">
+              4.3.5. Сроки предоставления внутреннего доступа к персональным
+              данным Пользователей регулируются в соответствии с п. 4.2.2.
+              настоящей Политики.
+            </p>
+            <h3 class="doc-heading">
+              <strong
+                >4.4. ПРЕДОСТАВЛЕНИЕ ПЕРСОНАЛЬНЫХ ДАННЫХ ТРЕТЬИМ ЛИЦАМ И ВНЕШНИЙ
+                ДОСТУП:</strong
+              >
+            </h3>
+            <p class="doc-p">
+              4.4.1. Основанием предоставления персональных данных Пользователей
+              третьим лицам в целях, указанных в Главе III настоящей Политики, а
+              также в иных целях является Согласие на предоставление
+              персональных данных участника мероприятия GWM третьим лицам.
+            </p>
+            <p class="doc-p">
+              4.4.2. Оператор персональных данных предупреждает лиц, получающих
+              персональные данные cубъектов персональных данных, что эти данные
+              могут быть использованы исключительно в целях, для которых они
+              сообщены. Лица, получающие персональные данные Пользователей,
+              обязаны соблюдать режим секретности (конфиденциальности).
+            </p>
+            <p class="doc-p">
+              4.4.3. Сроки предоставления персональных данных Пользователей
+              третьим лицам регулируются в соответствии с пунктом 4.2.2.
+              настоящей Политики. 4.5. 4.5.1.
+            </p>
+            <h3 class="doc-heading">
+              <strong
+                >V. ПРАВА И ОБЯЗАННОСТИ ОПЕРАТОРА И СУБЪЕКТА ПЕРСОНАЛЬНЫХ ДАННЫХ
+                ОПЕРАТОР ПЕРСОНАЛЬНЫХ ДАННЫХ</strong
+              >
+            </h3>
+            <h3 class="doc-heading">
+              <strong
+                >5.1. РАСПРОСТРАНЕНИЕ ПЕРСОНАЛЬНЫХ ДАННЫХ: Распространение
+                персональных данных Пользователей не предусмотрено.</strong
+              >
+            </h3>
+            <h3 class="doc-heading"><strong>5.1.1. ВПРАВЕ:</strong></h3>
+            <p class="doc-p">
+              5.1.1.1. Самостоятельно определять цели обработки персональных
+              данных субъектов персональных данных, а также категории и перечень
+              персональных данных, необходимых и достаточных для достижения
+              соответствующих целей в соответствии с Федеральным законом «О
+              персональных данных» от 27.07.2006 N 152 - ФЗ;
+            </p>
+            <p class="doc-p">
+              5.1.1.2. Самостоятельно определять состав и перечень мер,
+              необходимых и достаточных для обеспечения выполнения обязанностей,
+              возложенных на него в соответствии с Федеральным законом «О
+              персональных данных» от 27.07.2006 N 152 - ФЗ;
+            </p>
+            <p class="doc-p">
+              5.1.1.3. Обеспечивать конфиденциальность, сохранность и защиту
+              персональных данных субъектов персональных данных;
+            </p>
+            <p class="doc-p">
+              5.1.1.4. Пользоваться иными правами, предоставленными Оператору в
+              соответствии с Федеральным законом «О персональных данных» от
+              27.07.2006 N 152 - ФЗ, а также иными нормативно – правовыми
+              актами.
+            </p>
+            <h3 class="doc-heading"><strong>5.1.2. ОБЯЗАН:</strong></h3>
+            <p class="doc-p">
+              5.1.2.1. При сборе персональных данных, в том числе посредством
+              информационно-телекоммуникационной сети “Интернет” обеспечить
+              запись, систематизацию, накопление, хранение, уточнение
+              (обновление, изменение), извлечение персональных данных граждан
+              Российской Федерации с использованием баз данных, находящихся на
+              территории Российской Федерации, за исключением случаев,
+              предусмотренных пп. 2, 3, 4, 8 ч. 1 ст. 6 Федерального закона «О
+              персональных данных» от 27.07.2006 N 152 - ФЗ;
+            </p>
+            <p class="doc-p">
+              5.1.2.2. Разъяснять субъекту персональных данных юридические
+              последствия отказа предоставить персональные данные и/или дать
+              согласие на их обработку, если в соответствии с законодательством
+              Российской Федерации предоставление персональных данных и/или
+              получение Оператором согласия на обработку персональных данных
+              являются обязательными;
+            </p>
+            <p class="doc-p">
+              5.1.2.3. По просьбе cубъекта персональных данных предоставлять
+              информацию, предусмотренную п. 5.2.1.1 настоящей Политики, в
+              течение 10 (десяти) рабочих дней с момента обращения, либо
+              получения соответствующего запроса. Указанный срок может быть
+              продлен, но не более чем на 5 (пять) рабочих дней в случае
+              направления Оператором в адрес cубъекта персональных данных
+              мотивированного уведомления с указанием причин продления срока;
+            </p>
+            <p class="doc-p">
+              5.1.2.4. Предоставлять cубъекту персональных данных запрашиваемую
+              информацию той форме, в которой были направлены соответствующие
+              обращение/запрос, если в запросе не было указано иное.
+              Предоставляемая информация не должна содержать персональные
+              данные, относящиеся к другим субъектам персональных данных. Запрос
+              cубъекта должен содержать номер основного документа,
+              удостоверяющего личность cубъекта персональных данных или его
+              представителя, сведения о дате выдачи указанного документа и
+              выдавшем его органе, сведения, подтверждающие участие cубъекта
+              персональных данных в отношениях с Оператором (номер договора,
+              дата заключения договора, условное словесное обозначение и/или
+              иные сведения), либо сведения, иным образом подтверждающие факт
+              обработки персональных данных Оператором, подпись cубъекта
+              персональных данных или его представителя;
+            </p>
+            <p class="doc-p">
+              5.1.2.5. В случае предоставления cубъектом персональных данных или
+              его представителем сведений, подтверждающих, что персональные
+              данные являются неполными, неточными или неактуальными, в течение
+              7 (семи) рабочих дней внести в них соответствующие изменения и
+              уведомить cубъекта персональных данных или его представителя о
+              внесенных изменениях и предпринятых мерах, а также принять меры
+              для уведомления третьих лиц, которым персональные данные были
+              переданы;
+            </p>
+            <p class="doc-p">
+              5.1.2.6. Если персональные данные получены не от cубъекта
+              персональных данных, Оператор до начала обработки таких
+              персональных данных, предоставляет cубъекту персональных данных
+              следующую информацию: − наименование либо фамилия, имя, отчество и
+              адрес Оператора или его представителя;
+            </p>
+            <p class="doc-p">
+              цель обработки персональных данных и ее правовое основание;
+            </p>
+            <p class="doc-p">перечень персональных данных;</p>
+            <p class="doc-p">
+              предполагаемые пользователи персональных данных;
+            </p>
+            <p class="doc-p">
+              установленные Федеральным законом от 27.07.2006 N 152 - ФЗ “О
+              персональных данных” права cубъекта персональных данных;
+            </p>
+            <p class="doc-p">источник получения персональных данных;</p>
+            <p class="doc-p">
+              5.1.2.7. Оператор персональных данных освобождается от обязанности
+              предоставить cубъекту персональных данных сведения,
+              предусмотренные п. 6.1.2.6. настоящей Политики в случаях,
+              предусмотренных ч. 4 ст.18 Федерального закона от 27.07.2006 N 152
+              - ФЗ “О персональных данных”;
+            </p>
+            <p class="doc-p">
+              5.1.2.8. При принятии решений, затрагивающих интересы субъекта
+              персональных данных, Оператор не имеет права основываться на
+              персональных данных, полученных исключительно в результате их
+              автоматизированной обработки или электронного получения, за
+              исключением случая, когда от субъекта персональных данных было
+              получено соответствующее согласие или в случаях, предусмотренных
+              федеральными законами, устанавливающими также меры по обеспечению
+              соблюдения прав и законных интересов субъекта персональных данных;
+            </p>
+            <p class="doc-p">
+              5.1.2.9. Разъяснить субъекту персональных данных порядок принятия
+              решения на основании исключительно автоматизированной обработки
+              его персональных данных и возможные юридические последствия такого
+              решения, предоставить возможность заявить возражение против такого
+              решения, а также разъяснить порядок защиты субъектом персональных
+              данных своих прав и законных интересов. Оператор обязан
+              рассмотреть такое возражение в течение 30 (тридцати) дней со дня
+              его получения и уведомить субъекта персональных данных о
+              результатах рассмотрения такого возражения;
+            </p>
+            <p class="doc-p">
+              5.1.2.10. Обеспечивать взаимодействие с государственной системой
+              обнаружения, предупреждения и ликвидации последствий компьютерных
+              атак на информационные ресурсы Российской Федерации, включая
+              информирование его о компьютерных инцидентах, повлекших
+              неправомерную передачу (предоставление, распространение, доступ)
+              персональных данных в порядке, определенном федеральным органом
+              исполнительной власти, уполномоченным в области обеспечения
+              безопасности;
+            </p>
+            <p class="doc-p">
+              5.1.2.11. Сообщить в порядке, предусмотренном ст. 14 Федерального
+              закона от 27.07.2006 N 152 - ФЗ “О персональных данных”, субъекту
+              персональных данных или его представителю информацию о наличии
+              персональных данных, относящихся к соответствующему субъекту
+              персональных данных, а также предоставить возможность ознакомления
+              с этими персональными данными при обращении субъекта персональных
+              данных или его представителя либо в течение 10 (десяти) рабочих
+              дней с даты получения запроса субъекта персональных данных или его
+              представителя. Указанный срок может быть продлен, но не более чем
+              на 5 (пять) рабочих дней в случае направления Оператором в адрес
+              субъекта персональных данных мотивированного уведомления с
+              указанием причин продления срока предоставления запрашиваемой
+              информации;
+            </p>
+            <p class="doc-p">
+              5.1.2.12. В случае отказа в предоставлении информации о наличии
+              персональных данных о соответствующем субъекте персональных данных
+              или персональных данных субъекту персональных данных или его
+              представителю при их обращении либо при получении запроса субъекта
+              персональных данных или его представителя Оператор обязан дать в
+              письменной форме мотивированный ответ, содержащий ссылку на
+              положение ч. 8 ст. 14 Федерального закона от 27.07.2006 N 152 - ФЗ
+              “О персональных данных” или иного федерального закона, являющееся
+              основанием для такого отказа, в срок, не превышающий 10 (десяти)
+              рабочих дней со дня обращения субъекта персональных данных или его
+              представителя либо с даты получения запроса субъекта персональных
+              данных или его представителя. Указанный срок может быть продлен,
+              но не более чем на 5 (пять) рабочих дней в случае направления
+              Оператором в адрес субъекта персональных данных мотивированного
+              уведомления с указанием причин продления срока предоставления
+              запрашиваемой информации;
+            </p>
+            <p class="doc-p">
+              5.1.2.13. Сообщить в Уполномоченный орган по защите прав субъектов
+              персональных данных по запросу этого органа необходимую информацию
+              в течение 10 (десяти) рабочих дней с даты получения такого
+              запроса. Указанный срок может быть продлен, но не более чем на 5
+              (пять) рабочих дней в случае направления Оператором в адрес
+              Уполномоченного органа по защите прав субъектов персональных
+              данных мотивированного уведомления с указанием причин продления
+              срока предоставления запрашиваемой информации;
+            </p>
+            <p class="doc-p">
+              5.1.2.14. Не раскрывать третьим лицам и не распространять
+              персональные данные без согласия субъекта персональных данных,
+              если иное не предусмотрено Федеральным законом «О персональных
+              данных» от 27.07.2006 N 152 – ФЗ;
+            </p>
+            <p class="doc-p">
+              5.1.2.15. Обязанности Оператора в части, касающейся обращения к
+              нему субъекта персональных данных либо при получении запроса
+              субъекта персональных данных или его представителя, а также
+              Уполномоченного органа по защите прав субъектов персональных
+              данных регламентируются в Главе VII настоящей Политики.
+            </p>
+            <h3 class="doc-heading">
+              <strong>5.2. СУБЪЕКТ ПЕРСОНАЛЬНЫХ ДАННЫХ</strong>
+            </h3>
+            <h3 class="doc-heading"><strong>5.2.1. ВПРАВЕ:</strong></h3>
+            <p class="doc-p">
+              5.2.1.1. Получать информацию, касающуюся обработки его
+              персональных данных, в том числе:
+            </p>
+            <p class="doc-p">
+              подтверждение факта обработки персональных данных Оператором
+              персональных данных;
+            </p>
+            <p class="doc-p">
+              правовые основания и цели обработки персональных данных;
+            </p>
+            <p class="doc-p">
+              цели и применяемые Оператором способы обработки персональных
+              данных;
+            </p>
+            <p class="doc-p">
+              наименование и место нахождения Оператора, сведения о лицах (за
+              исключением работников Оператора), которые имеют доступ к
+              персональным данным или которым могут быть раскрыты персональные
+              данные на основании договора с Оператором или на основании
+              требований закона;
+            </p>
+            <p class="doc-p">
+              обрабатываемые персональные данные, относящиеся к соответствующему
+              субъекту персональных данных, источник их получения, если иной
+              порядок представления таких данных не предусмотрен федеральным
+              законодательством;
+            </p>
+            <p class="doc-p">
+              сроки обработки персональных данных, в том числе сроки их
+              хранения;
+            </p>
+            <p class="doc-p">
+              порядок осуществления субъектом персональных данных прав,
+              предусмотренных Федеральным законом «О персональных данных» от
+              27.07.2006 N 152 - ФЗ;
+            </p>
+            <p class="doc-p">
+              наименование или фамилию, имя, отчество и адрес лица,
+              осуществляющего обработку персональных данных по поручению
+              Оператора.
+            </p>
+            <p class="doc-p">
+              5.2.1.2. Право субъекта персональных данных на доступ его
+              персональным данным может быть ограничено в соответствии с ч. 8
+              ст. 14 Федерального закона «О персональных данных» от 27.07.2006 N
+              152 - ФЗ, а также иными нормативно - правовыми актами Российской
+              Федерации;
+            </p>
+            <p class="doc-p">
+              5.2.1.3. Требовать от Оператора уточнения его персональных данных,
+              их блокирования или уничтожения в случае, если персональные данные
+              являются неполными, устаревшими, неточными, незаконно полученными
+              или не являются необходимыми для заявленной цели обработки, а
+              также принимать предусмотренные законом меры по защите своих прав;
+            </p>
+            <p class="doc-p">
+              5.2.1.4. Обжаловать действия или бездействия Оператора
+              персональных данных в Роскомнадзор или в судебном порядке, в
+              случае если субъект персональных данных считает, что Оператор
+              осуществляет обработку его персональных данных с нарушением
+              требований законодательства Российской Федерации, настоящей
+              Политики;
+            </p>
+            <p class="doc-p">
+              5.2.1.5. Отозвать согласие на обработку персональных данных и/или
+              согласие на предоставление персональных данных третьим лицам,
+              и/или согласие на предоставление персональных данных третьим лицам
+              и трансграничную передачу, и/или согласие на трансграничную
+              передачу, и/или согласие на обработку персональных данных,
+              разрешенных к распространению, предоставленные Компании путем
+              подачи Оператору соответствующего заявления в простой письменной
+              форме заказным письмом с описью вложения по почтовому адресу :
+              129226, г. Москва, вн. тер. г. муниципальный округ Останкинский,
+              ул. Вильгельма Пика, д.16. Письменное заявление должно содержать №
+              основного документа, удостоверяющего личность субъекта
+              персональных данных или его представителя, сведения о дате выдачи
+              указанного документа и выдавшем его органе, сведения,
+              подтверждающие участие субъекта персональных данных в отношениях с
+              Оператором (№ договора, дата заключения договора, условное
+              словесное обозначение и (или) иные сведения), либо сведения, иным
+              образом подтверждающие факт обработки персональных данных
+              Оператором, подпись субъекта персональных данных или его
+              представителя. Оператор прекращает обработку персональных данных в
+              срок, не превышающий 30 (тридцать) дней с даты получения
+              указанного заявления, за исключением случаев, указанных в пп. 2 -
+              11 ч. 1 ст. 6, ч. 2 ст. 10 и ч. 2 ст. 11 Федерального закона «О
+              персональных данных» от 27.07.2006 N 152 – ФЗ;
+            </p>
+            <p class="doc-p">
+              5.2.1.6. Пользоваться иными правами, предоставленными субъекту
+              персональных данных в соответствии с Федеральным законом «О
+              персональных данных» от 27.07.2006 N 152 - ФЗ, а также иными
+              нормативно – правовыми актами.
+            </p>
+            <h3 class="doc-heading"><strong>5.2.2 ОБЯЗАН:</strong></h3>
+            <p class="doc-p">
+              5.2.2.1. Ознакомиться с условиями настоящей Политики и соблюдать
+              ее требования, а также требования Федерального закона «О
+              персональных данных» от 27.07.2006 N 152 – ФЗ;
+            </p>
+            <p class="doc-p">
+              5.2.2.2. Предоставлять полные и достоверные сведения о себе;
+            </p>
+            <p class="doc-p">
+              5.2.2.3. При изменении соответствующих сведений письменно
+              уведомлять Оператора персональных данных о таких изменениях в
+              течение 3 (трех) рабочих дней.
+            </p>
+            <h3 class="doc-heading">
+              <strong
+                >VI. ПОРЯДОК БЛОКИРОВАНИЯ, УТОЧНЕНИЯ, ПРЕКРАЩЕНИЯ ОБРАБОТКИ
+                ПЕРСОНАЛЬНЫХ ДАННЫХ</strong
+              >
+            </h3>
+            <h3 class="doc-heading">
+              <strong
+                >6.1. БЛОКИРОВАНИЕ (ОБЕСПЕЧЕНИЕ БЛОКИРОВАНИЯ) ПЕРСОНАЛЬНЫХ
+                ДАННЫХ:</strong
+              >
+            </h3>
+            <div class="doc-table-wrap">
+              <table class="legal-table">
+                <tr>
+                  <td>N пункта</td>
+                  <td>УСЛОВИЯ БЛОКИРОВАНИЯ</td>
+                  <td>СРОКИ БЛОКИРОВАНИЯ</td>
+                </tr>
+                <tr>
+                  <td>6.1.1.</td>
+                  <td>
+                    Выявление неправомерной обработки персональных данных при
+                    обращении или по запросу субъекта персональных данных, либо
+                    его представителя, а также по запросу Роскомнадзора:
+                  </td>
+                  <td>
+                    С момента такого обращения или получения запроса на период
+                    проверки (ч. 1 ст. 21 Федерального закона «О персональных
+                    данных» от 27.07.2006 N 152 - ФЗ).
+                  </td>
+                </tr>
+                <tr>
+                  <td>6.1.2.</td>
+                  <td>
+                    Выявление неточных персональных данных при обращении или по
+                    запросу субъекта персональных данных, либо его
+                    представителя, а также по запросу Роскомнадзора:
+                  </td>
+                  <td>
+                    С момента получения такого обращения или запроса на период
+                    проверки, если блокирование персональных данных не нарушает
+                    права и законные интересы субъекта персональных данных или
+                    третьих лиц (ч. 1 ст. 21 Федерального закона «О персональных
+                    данных» от 27.07.2006 N 152 - ФЗ).
+                  </td>
+                </tr>
+                <tr>
+                  <td>6.1.3.</td>
+                  <td>
+                    Отсутствие возможности уничтожения персональных данных в
+                    течение сроков, указанных в Разделе 8.1 настоящей Политики:
+                  </td>
+                  <td>
+                    С момента установления такой невозможности, далее Оператор
+                    обеспечивает уничтожение персональных данных в срок не более
+                    чем 6 (шесть) месяцев, если иной срок не установлен
+                    федеральными законами (ч. 6 ст. 21 Федерального закона «О
+                    персональных данных» от 27.07.2006 N 152 - ФЗ).
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <h3 class="doc-heading">
+              <strong
+                >6.2. УТОЧНЕНИЕ (ОБЕСПЕЧЕНИЕ УТОЧНЕНИЯ) ПЕРСОНАЛЬНЫХ
+                ДАННЫХ:</strong
+              >
+            </h3>
+            <div class="doc-table-wrap">
+              <table class="legal-table">
+                <tr>
+                  <td>N пункта</td>
+                  <td>УСЛОВИЕ</td>
+                  <td>СРОКИ</td>
+                  <td>ПРИМЕЧАНИЕ</td>
+                </tr>
+                <tr>
+                  <td>6.2.1.</td>
+                  <td>
+                    Подтверждение факта неточности персональных данных, на
+                    основании сведений, представленных субъектом персональных
+                    данных, его представителем, либо Роскомнадзором:
+                  </td>
+                  <td>
+                    В течение 7 (семи) рабочих дней со дня представления таких
+                    сведений,
+                  </td>
+                  <td>
+                    После чего предусмотрено снятие блокирования персональных
+                    данных (ч. 2 ст. 21 Федерального закона «О персональных
+                    данных» от 27.07.2006 N 152 - ФЗ).
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <h3 class="doc-heading">
+              <strong
+                >6.3. ПРЕКРАЩЕНИЕ ОБРАБОТКИ (ОБЕСПЕЧЕНИЕ ПРЕКРАЩЕНИЯ ОБРАБОТКИ)
+                ПЕРСОНАЛЬНЫХ ДАННЫХ:</strong
+              >
+            </h3>
+            <div class="doc-table-wrap">
+              <table class="legal-table">
+                <tr>
+                  <td>N пункта</td>
+                  <td>УСЛОВИЕ</td>
+                  <td>СРОКИ</td>
+                  <td>ПРИМЕЧАНИЕ</td>
+                </tr>
+                <tr>
+                  <td>6.3.1.</td>
+                  <td>
+                    Выявление неправомерной обработки персональных данных,
+                    осуществляемой Оператором персональных данных или третьим
+                    лицом:
+                  </td>
+                  <td>
+                    В срок, не превышающий 3 (три) рабочих дня с даты выявления,
+                  </td>
+                  <td>
+                    Об устранении допущенных нарушений или об уничтожении
+                    персональных данных Оператор обязан уведомить субъекта
+                    персональных данных или его представителя, а в случае, если
+                    обращение субъекта персональных данных или его представителя
+                    либо запрос были направлены Роскомнадзором, также указанный
+                    орган (ч. 3 ст. 21 Федерального закона «О персональных
+                    данных» от 27.07.2006 N 152 - ФЗ).
+                  </td>
+                </tr>
+                <tr>
+                  <td>6.3.2.</td>
+                  <td>
+                    Обращение субъекта персональных данных к Оператору с
+                    требованием о прекращении обработки персональных данных:
+                  </td>
+                  <td>
+                    В срок, не превышающий 10 (десяти) рабочих дней с даты
+                    полученияОператором соответствующего требования, за
+                    исключением случаев, предусмотренных пп. 2 - 11 ч. 1 ст. 6,
+                    ч. 2 ст. 10 и ч. 2 ст. 11 Федерального закона от 27.07.2006
+                    N 152 -ФЗ «О персональных данных»,
+                  </td>
+                  <td>
+                    Указанный срок может быть продлен, но не более чем на 5
+                    (пять) рабочих дней в случае направления Оператором в адрес
+                    субъекта персональных данных мотивированного уведомления с
+                    указанием причин продления срока предоставления
+                    запрашиваемой информации (ч. 5.1 ст. 21 Федерального закона
+                    «О персональных данных» от 27.07.2006 N 152 - ФЗ).
+                  </td>
+                </tr>
+                <tr>
+                  <td>6.3.3.</td>
+                  <td>
+                    Отзыв Субъектом персональных данных Согласия на обработку
+                    его персональных данных:
+                  </td>
+                  <td>
+                    При наступлении указанного обстоятельства (ч. 5 ст. 21
+                    Федерального закона «О персональных данных» от 27.07.2006 N
+                    152 - ФЗ),
+                  </td>
+                  <td>
+                    Дальнейшие действия Оператора регулируются в соответствии с
+                    п. 7.1.3. настоящей Политики.
+                  </td>
+                </tr>
+                <tr>
+                  <td>6.3.4.</td>
+                  <td>Достижение цели обработки персональных данных:</td>
+                  <td>
+                    При наступлении указанного обстоятельства (ч. 4 ст. 21
+                    Федерального закона «О персональных данных» от 27.07.2006 N
+                    152 - ФЗ),
+                  </td>
+                  <td>
+                    Дальнейшие действия Оператора регулируются в соответствии с
+                    п. 7.1.2. настоящей Политики.
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <h3 class="doc-heading">
+              <strong>VII. УНИЧТОЖЕНИЕ ПЕРСОНАЛЬНЫХ ДАННЫХ</strong>
+            </h3>
+            <div class="doc-table-wrap">
+              <table class="legal-table">
+                <tr>
+                  <td>N пункта</td>
+                  <td>УСЛОВИЯ</td>
+                  <td>СРОКИ</td>
+                  <td>ПРИМЕЧАНИЯ</td>
+                </tr>
+                <tr>
+                  <td>7.1.</td>
+                  <td>
+                    Невозможность обеспечить правомерность обработки
+                    персональных данных:
+                  </td>
+                  <td>
+                    В срок, не превышающий 10 (десяти) рабочих дней с даты
+                    выявления неправомерной обработки персональных данных,
+                  </td>
+                  <td>
+                    Об устранении допущенных нарушений или об уничтожении
+                    персональных данных Оператор обязан уведомить субъекта
+                    персональных данных или его представителя, а в случае, если
+                    обращение субъекта персональных данных или его представителя
+                    либо запрос Уполномоченного органа по защите прав субъектов
+                    персональных данных были направлены Уполномоченным органом
+                    по защите прав субъектов персональных данных, также
+                    указанный орган (ч. 3 ст. 21 Федерального закона «О
+                    персональных данных» от 27.07.2006 N 152 - ФЗ).
+                  </td>
+                </tr>
+                <tr>
+                  <td>7.2.</td>
+                  <td>Достижение цели обработки персональных данных:</td>
+                  <td>
+                    В срок, не превышающий 30 (тридцати) дней с даты достижения
+                    цели обработки персональных данных, если иное не
+                    предусмотрено договором, стороной которого,
+                    выгодоприобретателем или поручителем по которому является
+                    субъект персональных данных, иным соглашением между
+                    Оператором и субъектом персональных данных либо если
+                    Оператор не вправе осуществлять обработку персональных
+                    данных без согласия субъекта персональных данных на
+                    основаниях, предусмотренных Федеральным законом «О
+                    персональных данных» от 27.07.2006 N 152 - ФЗ или другими
+                    федеральными законами,
+                  </td>
+                  <td>
+                    Изначально Оператор прекращает обработку персональных данных
+                    или обеспечивает ее прекращение (если обработка персональных
+                    данных осуществляется другим лицом, действующим по поручению
+                    Оператора) в порядке, предусмотренным п. 6.3.4. настоящей
+                    Политики (ч. 4 ст. 21 Федерального закона «О персональных
+                    данных» от 27.07.2006 N 152 - ФЗ).
+                  </td>
+                </tr>
+                <tr>
+                  <td>7.3.</td>
+                  <td>
+                    Отзыв субъектом персональных данных согласия на обработку
+                    его персональных данных:
+                  </td>
+                  <td>
+                    В срок, не превышающий 30 (тридцати) дней с даты поступления
+                    указанного отзыва , если иное не предусмотрено договором,
+                    стороной которого, выгодоприобретателем или поручителем по
+                    которому является субъект персональных данных, иным
+                    соглашением между Оператором и субъектом персональных данных
+                    либо если Оператор не вправе осуществлять обработку
+                    персональных данных без согласия субъекта персональных
+                    данных на основаниях, предусмотренных Федеральным законом «О
+                    персональных данных» от 27.07.2006 N 152 - ФЗ или другими
+                    федеральными законами в случае, если сохранение персональных
+                    данных более не требуется для целей обработки персональных
+                    данных.
+                  </td>
+                  <td>
+                    Изначально Оператор прекращает обработку или обеспечивает
+                    прекращение такой обработки (если обработка персональных
+                    данных осуществляется другим лицом, действующим по поручению
+                    Оператора) в порядке, предусмотренном п. 6.3.3. настоящей
+                    Политики (ч. 5 ст. 21 Федерального закона «О персональных
+                    данных» от 27.07.2006 N 152 - ФЗ).
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <p class="doc-p">
+              7.4. Персональные данные Пользователей подлежат уничтожению, в
+              случаях и в сроки, указанные в Главе VII настоящей Политики в
+              порядке, установленном в Приказе Федеральной службы по надзору в
+              сфере связи, информационных технологий и массовых коммуникаций от
+              28 октября 2022 г. N 179 “Об утверждении Требований к
+              подтверждению уничтожения персональных данных”.
+            </p>
+            <h3 class="doc-heading">
+              <strong
+                >VIII. УСТАНОВЛЕНИЕ ФАКТА СЛУЧАЙНОЙ ИЛИ НЕПРАВОМЕРНОЙ ПЕРЕДАЧИ
+                ПЕРСОНАЛЬНЫХ ДАННЫХ. УВЕДОМЛЕНИЕ РОСКОМНАДЗОРА</strong
+              >
+            </h3>
+            <div class="doc-table-wrap">
+              <table class="legal-table">
+                <tr>
+                  <td>N пункта</td>
+                  <td>УСЛОВИЯ</td>
+                  <td>СРОКИ</td>
+                  <td>ПОРЯДОК ДЕЙСТВИЙ</td>
+                </tr>
+                <tr>
+                  <td>8.1.</td>
+                  <td>
+                    Установление факта неправомерного или случайного
+                    предоставления, распространения, доступа персональных
+                    данных, повлекшего нарушение прав субъектов персональных
+                    данных:
+                  </td>
+                  <td>
+                    8.1.1. В течение 24 (двадцати четырех) часов с момента
+                    выявления такого инцидента,
+                  </td>
+                  <td>
+                    Уведомление Уполномоченного органа о произошедшем инциденте,
+                    о предполагаемых причинах, повлекших нарушение прав
+                    субъектов персональных данных, и предполагаемом вреде,
+                    нанесенном правам субъектов персональных данных, о принятых
+                    мерах по устранению последствий соответствующего инцидента,
+                    а также предоставление сведений о лице, уполномоченном
+                    Оператором на взаимодействие с Уполномоченным органом по
+                    защите прав субъектов персональных данных, по вопросам,
+                    связанным с выявленным инцидентом с момента выявления такого
+                    инцидента Оператором, Уполномоченным органом по защите прав
+                    субъектов персональных данных или иным заинтересованным
+                    лицом;
+                  </td>
+                </tr>
+                <tr>
+                  <td>8.1.</td>
+                  <td>
+                    Установление факта неправомерного или случайного
+                    предоставления, распространения, доступа персональных
+                    данных, повлекшего нарушение прав субъектов персональных
+                    данных:
+                  </td>
+                  <td>
+                    8.1.2. В течение 72 (семидесяти двух) часов с момента
+                    выявления такого инцидента:
+                  </td>
+                  <td>
+                    Уведомление Уполномоченного органа о результатах внутреннего
+                    расследования выявленного инцидента, а также предоставление
+                    сведений о лицах, действия которых стали причиной
+                    выявленного инцидента (при наличии) с момента выявления
+                    такого инцидента Оператором, Уполномоченным органом по
+                    защите прав субъектов персональных данных или иным
+                    заинтересованным лицом.
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <h3 class="doc-heading">
+              <strong>IX. ЗАЩИТА ПЕРСОНАЛЬНЫХ ДАННЫХ</strong>
+            </h3>
+            <h3 class="doc-heading">
+              <strong
+                >9.1. МЕРЫ ЗАЩИТЫ ПЕРСОНАЛЬНЫХ ДАННЫХ, ПРИНИМАЕМЫЕ
+                КОМПАНИЕЙ:</strong
+              >
+            </h3>
+            <div class="doc-table-wrap">
+              <table class="legal-table">
+                <tr>
+                  <td>ГРУППА МЕР ЗАЩИТЫ</td>
+                  <td>ВИДЫ МЕР ЗАЩИТЫ</td>
+                  <td>ДОКУМЕНТЫ РЕГУЛИРОВАНИЯ</td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.1. Назначение лиц, ответственных за организацию
+                    обработки Персональных данных в Компании:
+                  </td>
+                  <td>
+                    - Приказ о назначении лица, ответственного за обработку
+                    персональных данных в Компании.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.2. Назначение лиц, ответственных за организацию
+                    обработки Персональных данных в структурных подразделениях,
+                    а также лиц, допущенных к обработке персональных данных в
+                    Компании:
+                  </td>
+                  <td>
+                    - Перечень лиц, ответственных за обработку персональных
+                    данных в отдельных структурных подразделениях, а также лиц,
+                    имеющих право доступа к персональным данным субъектов
+                    персональных данных, обрабатываемым в Компании.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.3. Издание Инструкций, регламентирующих права и
+                    обязанности сотрудников, обрабатывающих персональные данные
+                    в Компании:
+                  </td>
+                  <td>
+                    - Инструкция лица, ответственного за защиту информации,
+                    обрабатываемой в информационных системах Компании;  -
+                    Инструкция лица, ответственного за обработку персональных
+                    данных в отдельном структурном подразделении Компании в
+                    соответствии с Перечнем лиц, ответственных за обработку
+                    персональных данных в отдельных структурных подразделениях,
+                    а также лиц, имеющих право доступа к персональным данным
+                    субъектов персональных данных, обрабатываемым в Компании;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.3. Издание Инструкций, регламентирующих права и
+                    обязанности сотрудников, обрабатывающих персональные данные
+                    в Компании:
+                  </td>
+                  <td>
+                    - Инструкция лица, имеющего право доступа к персональным
+                    данным субъектов персональных данных, обрабатываемым в
+                    Компании в соответствии с Перечнем лиц, ответственных за
+                    обработку персональных данных в отдельных структурных
+                    подразделениях, а также лиц, имеющих право доступа к
+                    персональным данным субъектов персональных данных,
+                    обрабатываемым в Компании;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.3. Издание Инструкций, регламентирующих права и
+                    обязанности сотрудников, обрабатывающих персональные данные
+                    в Компании:
+                  </td>
+                  <td>
+                    - Инструкция администратора информационной безопасности
+                    информационных систем персональных данных Компании;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.3. Издание Инструкций, регламентирующих права и
+                    обязанности сотрудников, обрабатывающих персональные данные
+                    в Компании:
+                  </td>
+                  <td>
+                    - Инструкция системного администратора информационных систем
+                    персональных данных Компании;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.3. Издание Инструкций, регламентирующих права и
+                    обязанности сотрудников, обрабатывающих персональные данные
+                    в Компании:
+                  </td>
+                  <td>
+                    - Инструкция пользователя информационных систем персональных
+                    данных Компании;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.3. Издание Инструкций, регламентирующих права и
+                    обязанности сотрудников, обрабатывающих персональные данные
+                    в Компании:
+                  </td>
+                  <td>
+                    - Инструкция по организации антивирусной защиты в
+                    информационных системах персональных данных Компании;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.3. Издание Инструкций, регламентирующих права и
+                    обязанности сотрудников, обрабатывающих персональные данные
+                    в Компании:
+                  </td>
+                  <td>
+                    - Инструкция по организации режима обеспечения безопасности
+                    помещений, в которых обрабатывается информация ограниченного
+                    доступа в информационных системах персональных данных
+                    Компании;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.3. Издание Инструкций, регламентирующих права и
+                    обязанности сотрудников, обрабатывающих персональные данные
+                    в Компании:
+                  </td>
+                  <td>
+                    - Инструкция по выявлению инцидентов и реагированию на них
+                    при работе в информационных системах персональных данных
+                    Компании.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.4. Утверждение локальных нормативных актов,
+                    регулирующих порядок обработки персональных данных субъектов
+                    персональных данных:
+                  </td>
+                  <td>- Настоящая Политика;</td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.4. Утверждение локальных нормативных актов,
+                    регулирующих порядок обработки персональных данных субъектов
+                    персональных данных:
+                  </td>
+                  <td>- Политика обработки куки - файлов и иных метрик.</td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.5. Осуществление ознакомления работников Оператора,
+                    непосредственно осуществляющих обработку персональных
+                    данных, с положениями законодательства Российской Федерации
+                    о персональных данных, в том числе требованиями к защите
+                    персональных данных, документами, определяющими политику
+                    Оператора в отношении обработки персональных данных,
+                    локальными актами по вопросам обработки персональных данных,
+                    и (или) обучение указанных работников:
+                  </td>
+                  <td>
+                    - Листы ознакомления с локальными – нормативными актами
+                    Компании в области обработки персональных данных;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.5. Осуществление ознакомления работников Оператора,
+                    непосредственно осуществляющих обработку персональных
+                    данных, с положениями законодательства Российской Федерации
+                    о персональных данных, в том числе требованиями к защите
+                    персональных данных, документами, определяющими политику
+                    Оператора в отношении обработки персональных данных,
+                    локальными актами по вопросам обработки персональных данных,
+                    и (или) обучение указанных работников:
+                  </td>
+                  <td>
+                    - Соглашение о неразглашении персональных данных и
+                    конфиденциальной информации, ставших известными в процессе
+                    осуществления трудовой деятельности, подписываемое с
+                    работниками Компании.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.6. Обеспечение опубликования и неограниченного доступа
+                    к настоящей Политике посредством ее размещения по
+                    ссылке: tank.ru/politika-obrabotki-personal-nykh-dannykh-ofitsial-nogo-saita/
+                  </td>
+                  <td>
+                    9.1.1.6. Обеспечение опубликования и неограниченного доступа
+                    к настоящей Политике посредством ее размещения по
+                    ссылке: tank.ru/politika-obrabotki-personal-nykh-dannykh-ofitsial-nogo-saita/
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.1. Организационно – правовые меры</td>
+                  <td>
+                    9.1.1.7. Осуществление внутреннего контроля и (или) аудита
+                    соответствия обработки персональных данных Федеральному
+                    закону «О персональных данных» от 27.07.2006 N 152 - ФЗ и
+                    принятым в соответствии с ним нормативным правовым актам,
+                    требованиям к защите персональных данных, настоящей
+                    Политике, а также иным локальным нормативным актам.
+                  </td>
+                  <td>
+                    9.1.1.7. Осуществление внутреннего контроля и (или) аудита
+                    соответствия обработки персональных данных Федеральному
+                    закону «О персональных данных» от 27.07.2006 N 152 - ФЗ и
+                    принятым в соответствии с ним нормативным правовым актам,
+                    требованиям к защите персональных данных, настоящей
+                    Политике, а также иным локальным нормативным актам.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.1. Определение уровня угроз безопасности персональных
+                    данных при их обработке в информационных системах
+                    персональных данных:
+                  </td>
+                  <td>
+                    - Акт об определении угроз безопасности персональных данных,
+                    актуальных для информационной системы Компании.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.2. Применение организационных и технических мер по
+                    обеспечению безопасности персональных данных при их
+                    обработке в информационных системах персональных данных,
+                    необходимых для выполнения требований к защите персональных
+                    данных, исполнение которых обеспечивает установленные
+                    Правительством Российской Федерации уровни защищенности
+                    персональных данных:
+                  </td>
+                  <td>
+                    - Регламент применения организационных и технических мер по
+                    обеспечению безопасности персональных данных при их
+                    обработке в информационных системах персональных данных,
+                    необходимых для выполнения требований к защите персональных
+                    данных, исполнение которых обеспечивает установленные
+                    Правительством Российской Федерации уровни защищенности
+                    персональных данных в Компании.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.2. Применение организационных и технических мер по
+                    обеспечению безопасности персональных данных при их
+                    обработке в информационных системах персональных данных,
+                    необходимых для выполнения требований к защите персональных
+                    данных, исполнение которых обеспечивает установленные
+                    Правительством Российской Федерации уровни защищенности
+                    персональных данных:
+                  </td>
+                  <td>- Модель угроз персональным данным Компании;</td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.2. Применение организационных и технических мер по
+                    обеспечению безопасности персональных данных при их
+                    обработке в информационных системах персональных данных,
+                    необходимых для выполнения требований к защите персональных
+                    данных, исполнение которых обеспечивает установленные
+                    Правительством Российской Федерации уровни защищенности
+                    персональных данных:
+                  </td>
+                  <td>
+                    - Использование облачного сервера исключительно на
+                    территории Российской Федерации;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.2. Применение организационных и технических мер по
+                    обеспечению безопасности персональных данных при их
+                    обработке в информационных системах персональных данных,
+                    необходимых для выполнения требований к защите персональных
+                    данных, исполнение которых обеспечивает установленные
+                    Правительством Российской Федерации уровни защищенности
+                    персональных данных:
+                  </td>
+                  <td>
+                    - Шифрование персональных данных пользователей на уровне
+                    поля данных;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.2. Применение организационных и технических мер по
+                    обеспечению безопасности персональных данных при их
+                    обработке в информационных системах персональных данных,
+                    необходимых для выполнения требований к защите персональных
+                    данных, исполнение которых обеспечивает установленные
+                    Правительством Российской Федерации уровни защищенности
+                    персональных данных:
+                  </td>
+                  <td>- Использование протокола HTTPS для передачи данных;</td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.2. Применение организационных и технических мер по
+                    обеспечению безопасности персональных данных при их
+                    обработке в информационных системах персональных данных,
+                    необходимых для выполнения требований к защите персональных
+                    данных, исполнение которых обеспечивает установленные
+                    Правительством Российской Федерации уровни защищенности
+                    персональных данных:
+                  </td>
+                  <td>
+                    - Применение двусторонней аутентификацию между терминалом и
+                    облачным сервером;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.2. Применение организационных и технических мер по
+                    обеспечению безопасности персональных данных при их
+                    обработке в информационных системах персональных данных,
+                    необходимых для выполнения требований к защите персональных
+                    данных, исполнение которых обеспечивает установленные
+                    Правительством Российской Федерации уровни защищенности
+                    персональных данных:
+                  </td>
+                  <td>
+                    - Использование операционной платформы с управлением
+                    полномочиями;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.2. Применение организационных и технических мер по
+                    обеспечению безопасности персональных данных при их
+                    обработке в информационных системах персональных данных,
+                    необходимых для выполнения требований к защите персональных
+                    данных, исполнение которых обеспечивает установленные
+                    Правительством Российской Федерации уровни защищенности
+                    персональных данных:
+                  </td>
+                  <td>
+                    - Осуществление внутреннего контроля соответствия обработки
+                    персональных данных требованиям Федерального закона «О
+                    персональных данных» от 27.07.2006 N 152 - ФЗ и принятыми в
+                    соответствии с ним нормативно - правовыми актами Российской
+                    Федерации;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.2. Применение организационных и технических мер по
+                    обеспечению безопасности персональных данных при их
+                    обработке в информационных системах персональных данных,
+                    необходимых для выполнения требований к защите персональных
+                    данных, исполнение которых обеспечивает установленные
+                    Правительством Российской Федерации уровни защищенности
+                    персональных данных:
+                  </td>
+                  <td>
+                    - Применение программно-технических средств, прошедших в
+                    установленном порядке процедуру оценки соответствия;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.2. Применение организационных и технических мер по
+                    обеспечению безопасности персональных данных при их
+                    обработке в информационных системах персональных данных,
+                    необходимых для выполнения требований к защите персональных
+                    данных, исполнение которых обеспечивает установленные
+                    Правительством Российской Федерации уровни защищенности
+                    персональных данных:
+                  </td>
+                  <td>
+                    - Использование лицензированных антивирусных программ, не
+                    допускающих несанкционированный вход и доступ к персональным
+                    данным субъектов персональных данных, и другие меры,
+                    установленные законодательством Российской Федерации.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.3. Применение прошедших в установленном порядке
+                    процедуру оценки соответствия средств защиты информации:
+                  </td>
+                  <td>
+                    - Акт об оценке соответствия средств защиты информации.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.4. Применение для уничтожения персональных данных,
+                    прошедших в установленном порядке процедуру оценки
+                    соответствия средств защиты информации, в составе которых
+                    реализована функция уничтожения информации:
+                  </td>
+                  <td>
+                    - Акт об оценке соответствия средств защиты информации, в
+                    составе которых реализована функция уничтожения информации.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.5. Проведение оценки эффективности принимаемых мер по
+                    обеспечению безопасности персональных данных до ввода в
+                    эксплуатацию информационной системы персональных данных:
+                  </td>
+                  <td>
+                    - Акт об оценке эффективности принимаемых мер по обеспечению
+                    безопасности персональных данных до ввода в эксплуатацию
+                    информационной системы персональных данных.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.6. Осуществление оценки вреда, который может быть
+                    причинен субъектам персональных данных, соотношение
+                    указанного вреда и принимаемых мер, направленных на
+                    обеспечение выполнения обязанностей, предусмотренных
+                    Федеральным законом «О персональных данных» от 27.07.2006 N
+                    152 - ФЗ:
+                  </td>
+                  <td>
+                    - Акт об оценке вреда, который может быть причинен субъектам
+                    персональных данных в случае нарушения Федерального закона
+                    «О персональных данных» от 27.07.2006 N 152 - ФЗ.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.7. Обеспечение учета машинных носителей персональных
+                    данных:
+                  </td>
+                  <td>
+                    - Инструкция по организации учета, хранения, выдачи и
+                    уничтожения машинных носителей информации ограниченного
+                    доступа, используемых в информационных системах персональных
+                    данных Компании.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.8. Обеспечение обнаружения фактов несанкционированного
+                    доступа к персональным данным и принятием мер, в том числе
+                    мер по обнаружению, предупреждению и ликвидации последствий
+                    компьютерных атак на информационные системы персональных
+                    данных и по реагированию на компьютерные инциденты в них.
+                  </td>
+                  <td>
+                    9.1.2.8. Обеспечение обнаружения фактов несанкционированного
+                    доступа к персональным данным и принятием мер, в том числе
+                    мер по обнаружению, предупреждению и ликвидации последствий
+                    компьютерных атак на информационные системы персональных
+                    данных и по реагированию на компьютерные инциденты в них.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.9. Обеспечение восстановления персональных данных,
+                    модифицированных или уничтоженных вследствие
+                    несанкционированного доступа к ним.
+                  </td>
+                  <td>
+                    9.1.2.9. Обеспечение восстановления персональных данных,
+                    модифицированных или уничтоженных вследствие
+                    несанкционированного доступа к ним.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.10. Установление правил доступа к персональным данным,
+                    обрабатываемым в информационной системе персональных данных,
+                    а также обеспечивает регистрацию и учет всех действий,
+                    совершаемых с персональными данными в информационной системе
+                    персональных данных:
+                  </td>
+                  <td>
+                    - Инструкция по организации режима обеспечения безопасности
+                    помещений, в которых обрабатывается информация ограниченного
+                    доступа в информационных системах персональных данных
+                    Компании;
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.10. Установление правил доступа к персональным данным,
+                    обрабатываемым в информационной системе персональных данных,
+                    а также обеспечивает регистрацию и учет всех действий,
+                    совершаемых с персональными данными в информационной системе
+                    персональных данных:
+                  </td>
+                  <td>- Положение о парольной защите в Компании.</td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.11. Осуществление контроля за принимаемыми мерами по
+                    обеспечению безопасности персональных данных и уровня
+                    защищенности информационных систем персональных данных.
+                  </td>
+                  <td>
+                    9.1.2.11. Осуществление контроля за принимаемыми мерами по
+                    обеспечению безопасности персональных данных и уровня
+                    защищенности информационных систем персональных данных.
+                  </td>
+                </tr>
+                <tr>
+                  <td>9.1.2. Технические меры</td>
+                  <td>
+                    9.1.2.1. Обеспечение безопасности хранения персональных
+                    данных в Компании:
+                  </td>
+                  <td>
+                    - Инструкция по организации антивирусной защиты в
+                    информационных системах персональных данных Компании.
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <h3 class="doc-heading">
+              <strong>X. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ</strong>
+            </h3>
+            <p class="doc-p">
+              10.1. Лица, виновные в нарушении требований Федерального закона от
+              27.07.2006 N 152 - ФЗ “О персональных данных”, несут
+              предусмотренную законодательством Российской Федерации
+              ответственность.
+            </p>
+            <p class="doc-p">
+              10.2. В части, не урегулированной настоящей Политикой, отношения
+              Оператора и субъектов персональных данных регулируются в
+              соответствии с Федеральным законом от 27.07.2006 N 152 - ФЗ “О
+              персональных данных”, иными нормативными правовыми актами
+              Российской Федерации. вне зависимости от места нахождения Компании
+              или Пользователя.
+            </p>
+            <p class="doc-p">
+              10.3. Настоящая Политика может быть в любое время изменена и/или
+              дополнена Компанией в одностороннем порядке. Указанные изменения
+              вступают в силу и становятся обязательными с даты размещения
+              (публикации).
+            </p>
+            <p class="doc-p">
+              10.4. Дополнительную информацию об обработке ваших персональных
+              данных можно узнать, направив запрос Компании по почтовому адресу:
+              129226, г. Москва, вн. тер. г. муниципальный округ Останкинский,
+              ул. Вильгельма Пика, д.16
+            </p>
+          </article>
+        </div>
+      </details>
+
+      <details id="doc-personal" class="legal-details">
+        <summary>Согласие на обработку персональных данных</summary>
+        <div class="legal-details-body">
+          <article class="legal-doc">
+            <h2>Согласие на обработку персональных данных</h2>
+            <h3 class="doc-heading">
+              <strong
+                >СОГЛАСИЕ НА ОБРАБОТКУ ПЕРСОНАЛЬНЫХ ДАННЫХ УЧАСТНИКА МЕРОПРИЯТИЯ
+                WILD TRAIL</strong
+              >
+            </h3>
+            <p class="doc-p">
+              Я, являясь участником мероприятия WILD TRAIL (далее – Субъект
+              персональных данных и/или Участник), свободно, своей волей и в
+              своем интересе, в соответствии с Федеральным законом от 27.07.2006
+              N 152 - ФЗ «О персональных данных», посредством проставления
+              «галочки» в соответствующем чек – боксе в форме регистрации на
+              мероприятие WILD TRAIL (далее – Мероприятие), подписываю настоящее
+              согласие и выражаю ООО «Грейт Волл Мотор Рус» ИНН 7729763331 ОГРН
+              1147746089314, адрес юр. лица: 129226, г. Москва, вн. тер. г.
+              муниципальный округ Останкинский, ул. Вильгельма Пика, д.16 (далее
+              - Оператор персональных данных и/или Компания) согласие на
+              обработку моих персональных данных на следующих условиях:
+            </p>
+            <div class="doc-table-wrap">
+              <table class="legal-table">
+                <tr>
+                  <td>N</td>
+                  <td>Цели обработки персональных данных</td>
+                  <td>Категории персональных данных, подлежащих обработке</td>
+                  <td>Перечень персональных данных, подлежащих обработке</td>
+                </tr>
+                <tr>
+                  <td>1.</td>
+                  <td>
+                    Регистрация и обеспечение участия в Мероприятии,
+                    организуемом Компанией:
+                  </td>
+                  <td>общие</td>
+                  <td>
+                    - фамилия, имя, отчество; - № телефона; - адрес электронной
+                    почты;
+                  </td>
+                </tr>
+                <tr>
+                  <td>2.</td>
+                  <td>
+                    Разработка и формирование необходимых документов в том
+                    числе, но не ограничиваясь: соглашений о безопасности, тест
+                    - драйве, иных соглашений и договоров:
+                  </td>
+                  <td>общие</td>
+                  <td>
+                    - фамилия, имя, отчество; - паспортные данные: серия, №,
+                    дата и место выдачи, адрес регистрации, места рождения, дата
+                    рождения; - № телефона - адрес электронной почты;
+                  </td>
+                </tr>
+                <tr>
+                  <td>3.</td>
+                  <td>
+                    Направление своевременных ответов на запросы и обращения,
+                    связанные с товарами и услугами, предоставляемыми Компанией
+                    и ее партнерами, оптимизация процессов взаимодействия с
+                    Участниками, оказание консультационных услуг, связанных с
+                    предоставлением товаров и услуг Компанией, осуществление
+                    мониторинга и контроля обслуживания:
+                  </td>
+                  <td>общие</td>
+                  <td>
+                    - фамилия, имя, отчество; - № телефона; - адрес электронной
+                    почты;
+                  </td>
+                </tr>
+                <tr>
+                  <td>4.</td>
+                  <td>
+                    Формирование и ведение Компанией единой клиентской базы:
+                  </td>
+                  <td>общие</td>
+                  <td>
+                    - фамилия, имя, отчество; - № телефона; - адрес электронной
+                    почты;
+                  </td>
+                </tr>
+                <tr>
+                  <td>5.</td>
+                  <td>
+                    Контроль качества предоставляемых товаров и/или услуг;
+                    ведение статистической и аналитической отчетности;
+                    мониторинг и аудит:
+                  </td>
+                  <td>общие</td>
+                  <td>
+                    - фамилия, имя, отчество; - № телефона; - адрес электронной
+                    почты;
+                  </td>
+                </tr>
+                <tr>
+                  <td>6.</td>
+                  <td>Техническая поддержка информационных систем</td>
+                  <td>общие</td>
+                  <td>
+                    - фамилия, имя, отчество; - № телефона; - адрес электронной
+                    почты;
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <p class="doc-p">
+              Перечень действий с персональными данными, на совершение которых
+              дается согласие, общее описание используемых Оператором способов
+              обработки персональных данных: любые действия (операции) или
+              совокупность действий (операций), совершаемых с использованием
+              средств автоматизации или без использования таких средств с
+              персональными данными, включая сбор, запись, систематизацию,
+              накопление, хранение, уточнение (обновление, изменение),
+              извлечение, использование, доступ, передачу, обезличивание,
+              блокирование, удаление, уничтожение персональных данных.
+            </p>
+            <p class="doc-p"><strong>Я ознакомлен (-а) с тем, что: </strong></p>
+            <p class="doc-p">
+              Я вправе обратиться к Оператору с письменным запросом для
+              получения информации, касающейся обработки моих персональных
+              данных, а также для исправления (дополнения) неверных или неполных
+              персональных данных и/или отозвать настоящее Согласие на обработку
+              персональных данных в любое время путем подачи Оператору
+              соответствующего заявления в простой письменной форме заказным
+              письмом с описью вложения по почтовому адресу:129226, г. Москва,
+              вн. тер. г. муниципальный округ Останкинский, ул. Вильгельма Пика,
+              д.16. Письменное заявление должно содержать № основного документа,
+              удостоверяющего личность Субъекта персональных данных или его
+              представителя, сведения о дате выдачи указанного документа и
+              выдавшем его органе, сведения, подтверждающие участие Субъекта
+              персональных данных в отношениях с Оператором (№ договора, дата
+              заключения договора, условное словесное обозначение и (или) иные
+              сведения), либо сведения, иным образом подтверждающие факт
+              обработки Персональных данных Оператором, подпись Субъекта
+              персональных данных или его представителя. Оператор прекращает
+              обработку персональных данных в срок, не превышающий 30 (тридцать)
+              дней с даты получения отзыва Согласия на обработку персональных
+              данных. В случае отзыва Согласия на обработку персональных данных,
+              Оператор вправе продолжить обработку моих персональных данных в
+              отсутствие настоящего Согласия по основаниям, предусмотренным
+              законодательством Российской Федерации.
+            </p>
+            <p class="doc-p">
+              Настоящее Согласие на обработку персональных данных действует с
+              момента его предоставления Оператору и в течение 10 лет (настоящее
+              условие не распространяется на персональные данные, которые
+              Оператор имеет право обрабатывать в целях исполнения
+              законодательства Российской Федерации) или до момента его отзыва в
+              соответствии со статьей 9 Федерального закона от 27.07.2006 г.
+              №152-ФЗ «О персональных данных».
+            </p>
+          </article>
+        </div>
+      </details>
+
+      <details id="doc-communication" class="legal-details">
+        <summary>Согласие на коммуникацию</summary>
+        <div class="legal-details-body">
+          <article class="legal-doc">
+            <h2>Согласие на коммуникацию</h2>
+            <h3 class="doc-heading">
+              <strong
+                >СОГЛАСИЕ НА КОММУНИКАЦИЮ УЧАСТНИКА МЕРОПРИЯТИЯ WILD
+                TRAIL</strong
+              >
+            </h3>
+            <p class="doc-p">
+              Я, являясь участником мероприятия WILD TRAIL <strong
+                >(далее – Участник)</strong
+              >, свободно, своей волей и в своем интересе, в соответствии с
+              Федеральным законом от 13.03.2006 N 38 - ФЗ “О рекламе”,
+              посредством проставления «галочки» в соответствующем чек – боксе в
+              форме регистрации на мероприятие WILD TRAIL, подписываю настоящее
+              Согласие и выражаю Обществу с ограниченной ответственностью «Грейт
+              Волл Мотор Рус» ИНН 7729763331 ОГРН 1147746089314, адрес юр. лица:
+              129226, город Москва, ул Вильгельма Пика, д. 16 <strong
+                >(далее - Компания)</strong
+              > согласие на коммуникацию на следующих условиях:
+            </p>
+            <div class="doc-table-wrap">
+              <table class="legal-table">
+                <tr>
+                  <td>N</td>
+                  <td>Цель коммуникации</td>
+                  <td>Коммуникационные каналы</td>
+                </tr>
+                <tr>
+                  <td>1.</td>
+                  <td>
+                    получение уведомлений, рассылок, информационных и рекламных
+                    сообщений и материалов в том числе, но не ограничиваясь, о
+                    продукции и услугах Компании, наличии специальных
+                    предложений, акций в отношении них, о финансовых услугах,
+                    связанных с приобретением и использованием товаров и услуг,
+                    о проведении мероприятий, презентаций, о новостях брендов
+                    GWM, TANK; уведомлений о сервисных и отзывных кампаниях
+                  </td>
+                  <td>
+                    - push – уведомления; - e–mail сообщения; - почтовая
+                    рассылка; - sms– и mms–сообщения; -телефонные звонки и
+                    сообщения:в том числе посредством информационно
+                    -коммуникационных сервисов, таких как Max, Вконтакте,
+                    Telegram и т.д.
+                  </td>
+                </tr>
+                <tr>
+                  <td>2.</td>
+                  <td>
+                    проведение опросов SSI/CSI в целях улучшения качества
+                    обслуживания и взаимодействия с пользователями;
+                    информирование о сервисных кампаниях и потенциальной
+                    коммуникации при условии возникновения триггерного события
+                    (приглашения на мероприятия, поздравления с праздниками и
+                    т.д.)
+                  </td>
+                  <td>
+                    - push – уведомления; - e–mail сообщения; - почтовая
+                    рассылка; - sms– и mms–сообщения; -телефонные звонки и
+                    сообщения:в том числе посредством информационно
+                    -коммуникационных сервисов, таких как Max, Вконтакте,
+                    Telegram и т.д.
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </article>
+        </div>
+      </details>
+
+      <details id="doc-third-party" class="legal-details">
+        <summary>
+          Согласие на предоставление персональных данных третьим лицам
+        </summary>
+        <div class="legal-details-body">
+          <article class="legal-doc">
+            <h2>
+              Согласие на предоставление персональных данных третьим лицам
+            </h2>
+            <h3 class="doc-heading">
+              <strong
+                >СОГЛАСИЕ НА ПРЕДОСТАВЛЕНИЕ ПЕРСОНАЛЬНЫХ ДАННЫХ ТРЕТЬИМ ЛИЦАМ
+                МЕРОПРИЯТИЯ WILD TRAIL</strong
+              >
+            </h3>
+            <p class="doc-p">
+              Я, являясь участником мероприятия WILD TRAIL (далее – Субъект
+              персональных данных и/или Участник), свободно, своей волей и в
+              своем интересе, в соответствии с Федеральным законом от 27.07.2006
+              N 152 - ФЗ «О персональных данных», посредством проставления
+              «галочки» в соответствующем чек – боксе в форме регистрации на
+              мероприятие WILD TRAIL, подписываю настоящее согласие и выражаю
+              ООО «Грейт Волл Мотор Рус» ИНН 7729763331 ОГРН 1147746089314,
+              адрес юр. лица: 129226, г. Москва, вн. тер. г. муниципальный округ
+              Останкинский, ул. Вильгельма Пика, д.16 (далее - Оператор
+              персональных данных и/или Компания) согласие на предоставление
+              моих персональных данных Третьим лицам, которым, в соответствием с
+              настоящим Согласием, возможно предоставление персональных данных
+              субъектов персональных данных в целях оказания отдельных видов
+              услуг Оператора персональных данных, (далее – ¹)
+            </p>
+            <p class="doc-p">
+              1.Перечень действий с персональными данными, на совершение которых
+              дается согласие, общее описание используемых Оператором и/или
+              Третьим лицом способов обработки персональных данных: любые
+              действия (операции) или совокупность действий (операций),
+              совершаемых с использованием средств автоматизации или без
+              использования таких средств с персональными данными, включая сбор,
+              запись, систематизацию, накопление, хранение, уточнение
+              (обновление, изменение), извлечение, использование, доступ,
+              передачу, обезличивание, блокирование, удаление, уничтожение
+              персональных данных.
+            </p>
+            <p class="doc-p">
+              2.Все Третьи лица, указанные в , обязаны соблюдать принципы и
+              правила обработки персональных данных, конфиденциальность
+              персональных данных, принимать необходимые меры, направленные на
+              обеспечение выполнения обязанностей, предусмотренных Федеральным
+              законом от 27.07.2006 года №152 - ФЗ «О персональных данных». Я
+              подтверждаю, <strong>что ознакомился (- ась) с </strong
+              ><strong>.</strong>
+            </p>
+            <p class="doc-p">Я ознакомлен с тем, что:</p>
+            <p class="doc-p">
+              Я вправе обратиться к Оператору и/или Третьим лицам с письменным
+              запросом для получения информации, касающейся обработки моих
+              персональных данных, а также для исправления (дополнения) неверных
+              или неполных персональных данных и/или отозвать настоящее Согласие
+              на обработку персональных данных в любое время путем подачи
+              Оператору соответствующего заявления в простой письменной форме
+              заказным письмом с описью вложения по почтовому адресу: 129226, г.
+              Москва, ул. Вильгельма Пика, д. 161. Письменное заявление должно
+              содержать № основного документа, удостоверяющего личность Субъекта
+              персональных данных или его представителя, сведения о дате выдачи
+              указанного документа и выдавшем его органе, сведения,
+              подтверждающие участие Субъекта персональных данных в отношениях с
+              Оператором (№ договора, дата заключения договора, условное
+              словесное обозначение и (или) иные сведения), либо сведения, иным
+              образом подтверждающие факт обработки персональных данных
+              Оператором, подпись Субъекта персональных данных или его
+              представителя. Оператор прекращает обработку персональных данных в
+              срок, не превышающий 30 (Тридцать) дней с даты получения отзыва
+              Согласия на обработку персональных данных. В случае отзыва
+              Согласия на обработку персональных данных, Оператор вправе
+              продолжить обработку моих персональных данных в отсутствие
+              настоящего Согласия по основаниям, предусмотренным
+              законодательством Российской Федерации.
+            </p>
+            <p class="doc-p">
+              Настоящее Согласие действует с момента его предоставления
+              Оператору и до достижения целей, указанных в настоящем Согласии
+              (настоящее условие не распространяется на персональные данные,
+              которые Оператор имеет право обрабатывать в целях исполнения
+              законодательства Российской Федерации) или до момента его отзыва в
+              соответствии со статьей 9 Федерального закона от 27.07.2006 г.
+              №152 - ФЗ «О персональных данных»
+            </p>
+          </article>
+        </div>
+      </details>
+    </section>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
