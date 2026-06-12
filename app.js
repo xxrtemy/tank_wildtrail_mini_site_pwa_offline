@@ -687,6 +687,44 @@ var STORAGE_KEY = "tank_wildtrail_records_v20";
         }
       }
 
+      var offlineModeReady = false;
+
+      function showOfflineReadyStatus() {
+        offlineModeReady = true;
+        updateOfflineStatus(
+          "Офлайн-режим полностью готов. Сайт можно открыть и использовать без интернета на этом устройстве.",
+          false
+        );
+      }
+
+      function checkOfflineReadiness(worker) {
+        if (!worker || typeof MessageChannel === "undefined") {
+          return;
+        }
+
+        var channel = new MessageChannel();
+        var timeout = window.setTimeout(function () {
+          channel.port1.onmessage = null;
+        }, 5000);
+
+        channel.port1.onmessage = function (event) {
+          window.clearTimeout(timeout);
+          if (event.data && event.data.offlineReady) {
+            showOfflineReadyStatus();
+          } else {
+            updateOfflineStatus(
+              "Офлайн-режим ещё готовится. Не закрывайте страницу и оставьте интернет включённым.",
+              false
+            );
+          }
+        };
+
+        worker.postMessage(
+          { type: "CHECK_OFFLINE_READY" },
+          [channel.port2]
+        );
+      }
+
       function registerOfflineMode() {
         if (!("serviceWorker" in navigator)) {
           updateOfflineStatus(
@@ -725,6 +763,10 @@ var STORAGE_KEY = "tank_wildtrail_records_v20";
                   reg.update();
                 } catch (e) {}
               }
+
+              navigator.serviceWorker.ready.then(function (readyReg) {
+                checkOfflineReadiness(readyReg.active);
+              });
             })
             .catch(function () {
               updateOfflineStatus(
@@ -740,17 +782,28 @@ var STORAGE_KEY = "tank_wildtrail_records_v20";
         }
 
         window.addEventListener("online", function () {
-          updateOfflineStatus(
-            "Интернет есть. Сайт и форма готовы к работе.",
-            false
-          );
+          if (offlineModeReady) {
+            showOfflineReadyStatus();
+          } else {
+            updateOfflineStatus(
+              "Интернет есть. Офлайн-режим ещё готовится.",
+              false
+            );
+          }
         });
 
         window.addEventListener("offline", function () {
-          updateOfflineStatus(
-            "Интернета нет. Форма продолжит работать на этом устройстве, если сайт уже был открыт онлайн.",
-            false
-          );
+          if (offlineModeReady) {
+            updateOfflineStatus(
+              "Интернета нет. Офлайн-режим полностью готов, форма продолжает работать.",
+              false
+            );
+          } else {
+            updateOfflineStatus(
+              "Интернета нет, но полная готовность офлайн-режима не была подтверждена.",
+              true
+            );
+          }
         });
       }
 

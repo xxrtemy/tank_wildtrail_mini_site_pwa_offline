@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tank-wildtrail-form-v33';
+const CACHE_NAME = 'tank-wildtrail-form-v34';
 const APP_SHELL = [
   './',
   './index.html',
@@ -19,6 +19,25 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((keys) => Promise.all(keys.map((key) => {
       if (key !== CACHE_NAME) return caches.delete(key);
     }))).then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('message', (event) => {
+  if (!event.data || event.data.type !== 'CHECK_OFFLINE_READY') return;
+
+  const replyPort = event.ports && event.ports[0];
+  if (!replyPort) return;
+
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return Promise.all(APP_SHELL.map((path) => cache.match(path)));
+    }).then((responses) => {
+      replyPort.postMessage({
+        offlineReady: responses.every((response) => Boolean(response))
+      });
+    }).catch(() => {
+      replyPort.postMessage({ offlineReady: false });
+    })
   );
 });
 
